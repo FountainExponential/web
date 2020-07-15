@@ -24,18 +24,24 @@ A possible scenario that should be possible with Fountain Exponential, is scalin
 Dialog separate from action
 The key to Fountain Exponential is that it's based on Fountain and thus specifies Characters and Dialog separate from the story. This makes it a better choice for a visual medium like a game.
 
-### Entities matching Core Knowledge
-In development psychology Core Knowledge is the knowledge humans and living creatures are born with. The core knowledge domains are Objects, Agents, Geography, Calculus, Social roles and Shapes/Forms. Although lots is proven about the theory, there are still parts that are controversial. Whether true or not it is a very simple and intuitive system of describing the world. As game describe a world, it would make sense to have a language that understands the distinctions between these domains.
-
-Entities like Characters, Groups, Props, Locations and collections can be defined with facts, values and operations, match the Core Knowledge domains. This should support the human cognition modes of Object interactions, Agent actions, Social Group dynamics, location Geography and calculation operations. This also allows for organization of the text similar to what is in computer science called object oriented programming. 
+### Ergonomics
+Fountain Exponential will extend Fountain, the Markdown variant specific for the screenplay writing domain, in such a way that the excellent readability of Fountain will remain, but add the branching and triggering aspects for games.
 
 ### Supports multiple story styles
 The engine can be used to tell a literature style story, by only using action in scenes and thus Fountain Exponential is an Interactive Fiction engine. The dialog option make it have an extra dimension, that is vital for characters on screen.
 
 Various game modes should be supported by Fountain Exponential like text only adventure style games, illustrated gamebook style games, as well as games that host text in a 2d or 3d world.
 
-### Ergonomics
-Fountain Exponential will extend Fountain, the Markdown variant specific for the screenplay writing domain, in such a way that the excellent readability of Fountain will remain, but add the branching and triggering aspects for games.
+### Entities matching Core Knowledge
+In development psychology Core Knowledge is the innate knowledge humans and other living creatures are born with. The core knowledge domains are Objects, Agents, Geography, Calculus, Social roles and Shapes/Forms. Although lots is proven about the theory, there are still parts that are controversial. Whether true or not, what is relevant for Fountain Exponential is that basing certain language elements on these domains will make it very intuitive to understand. Fountain already has done part of this by defining Characters describing agents, Props describing objects and Locations describing geography.
+
+All entities in a game they should be able to have elements like facts, values and operations tagged to them. These elements make it possible to interact with the host of the game. The flow of the story can also be changed by these elements as well and the text itself can be changed when variables in the text are replaced.
+
+Specific entities like Characters, Props and Locations should be extended with Groups, Collections, Shapes and other when needed. These should be able to support the human cognition modes of Object interactions, Agent actions, Social Group dynamics, location Geography, calculation operations and Shape/Form description. 
+
+Describing Shape/Form is generally omitted by screenplay writers in favor of a more poetic an compact style of describing the location and props. Prop masters and location scouts interpret these colorful descriptions to find objects and places they feel match the intend of the description. Game makers and interpreters could also be given the same freedom, but it should also be possible to be very precise in your description and have the interpreting application synthesize the object or place or have artist draw or model your vision. This way of describing may be very similar to descriptions of archeological finds and places, as the science of archology deals with the same problem.
+
+Centering the text around entities would allow for organization of the text similar to what is in computer science called object oriented programming. Although the main story should read as a screenplay, interaction with entities not relefant to the story should be relegated to files holding the elements and interaction specific to that entity.
 
 ## Fountain Exponential technical similarities
 ### Commonmark
@@ -73,4 +79,3 @@ Adding attribute blocks that describe how an element should be displayed makes i
 Yaml blocks are generally used in Markdown as a place to store values that get replaced in the text, making the Markdown into a template. It can only be added to the front of the file, hence the name "Yaml Front Matter" used by markdown interpreters.
 
 Adding the ability to add Yaml to the front of a scene will make it possible to have trigger or event definitions for a scene. Other declarative data interaction may also be possible. The Yaml data blocks may be extended as a writer sees fit and an interpreting game engine can use or ignore whatever it finds. The Yaml blocks together with the code blocks makes it possible for the text to interact with the game systems.
-
