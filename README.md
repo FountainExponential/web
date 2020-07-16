@@ -41,9 +41,18 @@ Specific entities like Characters, Props and Locations should be extended with G
 
 Describing Shape/Form is generally omitted by screenplay writers in favor of a more poetic an compact style of describing the location and props. Prop masters and location scouts interpret these colorful descriptions to find objects and places they feel match the intend of the description. Game makers and interpreters could also be given the same freedom, but it should also be possible to be very precise in your description and have the interpreting application synthesize the object or place or have artist draw or model your vision. This way of describing may be very similar to descriptions of archeological finds and places, as the science of archology deals with the same problem.
 
-Centering the text around entities would allow for organization of the text similar to what is in computer science called object oriented programming. Although the main story should read as a screenplay, interaction with entities not relefant to the story should be relegated to files holding the elements and interaction specific to that entity.
+Centering the text around entities would allow for organization of the text similar to what is in computer science called object oriented programming. Although the main story should read as a screenplay, interaction with entities not relevant to the story should be relegated to files holding the elements and interaction specific to that entity.
 
 ## Fountain Exponential technical similarities
+### Fountain
+Fountain has support for screenplay specific things like Act, Sequence and Scene. These are spans of time. An Act is a defined part of the story structure. A Sequence, is contained in an Act and had to do with the reals of film being switched, but is now multiple scenes. A Scene is a span of time on a specific location, possibly with sub locations. These spans of time are similar to methods or functions in a programming language, because once they get called, some action gets performed.
+
+#### Moments
+A Moment is an optional part of the Scene. A moment is still a span of time on a location, just like a Scene, only shorter. It can be chosen or skipped depending on the state of the game or the player. A Moment should be a full paragraph or dialog line. For changes in parts of text us Slices.
+
+#### Slices
+A Slice is an optional part of a text. It is part of a Scene or Moment, but displays text based on the state of the game or the player. It can start and stop anywhere in the text and is intended to embellish the text. It is similar to some functionality in Ink that made the text adapt to the choices and situation of the player in an award winning way.
+
 ### Commonmark
 Commonmark is the Markdown standard all Markdown implementers agree on. Fountain is a bit strange, because it does not adhere to the Commonmark standard. The thinking being that Fountain is specific for screenplay writing and things like tables will never be in a screenplay.
 Adding missing Commonmark functionality will make it easier for experienced Markdown users to pick it up.
