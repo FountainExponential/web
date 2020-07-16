@@ -8,7 +8,7 @@ Even when viewed as plain text, your game story feels like a screenplay playing 
 
 Fountain Exponential supports everything a game story writer is likely to need in the creative phases of writing for a game.
 
-Because it’s just text, Fountain Exponential is also a great format for archiving game stories without worry of file-format obsolescence or incompatibility.
+Because it’s just text, Fountain Exponential is also a great format for archiving game stories without worry of file-format obsolescence, game engine abandonment or incompatibility.
 
 
 
@@ -53,6 +53,12 @@ A Moment is an optional part of the Scene. A moment is still a span of time on a
 #### Slices
 A Slice is an optional part of a text. It is part of a Scene or Moment, but displays text based on the state of the game or the player. It can start and stop anywhere in the text and is intended to embellish the text. It is similar to some functionality in Ink that made the text adapt to the choices and situation of the player in an award winning way.
 
+#### Links and References to Scenes, Moments and Slices
+Links and References allow the story to divert to other Scenes, Moments and Slices, but a Link will continue there while a Reference will revert back to the originating story. Also showing the diverted to text with or without line breaks, therefor integrating it in the original text or making it separate from it. The difference between link and reference can be denoted by - and =. The difference between integrating or separating the diverted to text can be denoted by > and | similar to Yaml. There thus be 4 types of arrows ->, =>, -|, =|. This also implies that the game engine keeps track of the stack of Scenes, Moments and Slices, so it can go back to a previous one.
+
+#### References to other files
+To focus on the main story in the main file it should be possible to relegate the non relevant Scenes, Moments and Slices to other files. Adventure games have a lot of interaction that, but adds color to story but distracts from the drama. For instance the examine action generally results in a scene where the object, person or location is described, but this Scene seldom furthers the story. This description Scene should therefore be in another file, ideally grouped with other Scenes, Moments or Slices around a specific Entity. 
+
 ### Commonmark
 Commonmark is the Markdown standard all Markdown implementers agree on. Fountain is a bit strange, because it does not adhere to the Commonmark standard. The thinking being that Fountain is specific for screenplay writing and things like tables will never be in a screenplay.
 Adding missing Commonmark functionality will make it easier for experienced Markdown users to pick it up.
@@ -88,3 +94,4 @@ Adding attribute blocks that describe how an element should be displayed makes i
 Yaml blocks are generally used in Markdown as a place to store values that get replaced in the text, making the Markdown into a template. It can only be added to the front of the file, hence the name "Yaml Front Matter" used by markdown interpreters.
 
 Adding the ability to add Yaml to the front of a scene will make it possible to have trigger or event definitions for a scene. Other declarative data interaction may also be possible. The Yaml data blocks may be extended as a writer sees fit and an interpreting game engine can use or ignore whatever it finds. The Yaml blocks together with the code blocks makes it possible for the text to interact with the game systems.
+
