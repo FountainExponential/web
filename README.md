@@ -81,10 +81,10 @@ Using the most suitable extensions for Fountain Exponential will make it compati
 
 Adding Markdown extensions will make it more complex, but achieve the same things as it's competitors in a far simplify way. This will make creation of the story of a game easier, as well as allow for more clarity and ease of rewriting.
 
-#### Container blocks
-Markdown containers are fenced by triple colons ::: optionally followed by and attribute block. When using Markdig, markdown-it or VuePress they translate to a div in HTML.
+#### Yaml blocks for data interaction
+Yaml blocks are generally used in Markdown as a place to store values that get replaced in the text, making the Markdown into a template. It can only be added to the front of the file, hence the name "Yaml Front Matter" used by markdown interpreters.
 
-Adding container blocks will make it possible to have menu structures in the game. A list inside a container will be interpreted as a menu the user must choose an option from. An example of a game that uses menu's extensively is "80 day's" by Inkle, unfortunately their game engine Ink does menu's in a way that is easy to write but hard to read. Fountain Exponential hopes to make it's menu's easier to read, although they may be harder to write.
+Adding the ability to add Yaml to the front of a scene will make it possible to have trigger or event definitions for a scene. Other declarative data interaction may also be possible. The Yaml data blocks may be extended as a writer sees fit and an interpreting game engine can use or ignore whatever it finds. The Yaml blocks together with the code blocks makes it possible for the text to interact with the game systems.
 
 #### Attribute blocks
 Attributes in Markdown generally are started by open accolade { and end with the closing accolade }.  When using Markdig  or Kramdown they translate to attributes on an element in HTML.
@@ -117,7 +117,41 @@ Adding attribute blocks that describe how an element should be displayed makes i
 
 An example of a game that uses attributes extensively, mainly to express emotion in it's text is "Night in the Woods" by Secret Lab, unfortunately their game engine Yarn Spinner adds these attributes in a clunky way making the text less readable. Fountain Exponential hopes to make attributes on text easier to read, although they may be harder to write.
 
-#### Yaml blocks for data interaction
-Yaml blocks are generally used in Markdown as a place to store values that get replaced in the text, making the Markdown into a template. It can only be added to the front of the file, hence the name "Yaml Front Matter" used by markdown interpreters.
+#### Container blocks
+Markdown containers are fenced by triple colons ::: optionally followed by and attribute block. When using Markdig, markdown-it or VuePress they translate to a div in HTML.
 
-Adding the ability to add Yaml to the front of a scene will make it possible to have trigger or event definitions for a scene. Other declarative data interaction may also be possible. The Yaml data blocks may be extended as a writer sees fit and an interpreting game engine can use or ignore whatever it finds. The Yaml blocks together with the code blocks makes it possible for the text to interact with the game systems.
+Adding container blocks will make it possible change meaning of a part of the text, while still maintaining the readability of Markdown. In a Markdown editor that does not know Fountain Exponential the container does not create problems with syntax highlighting etc.
+
+Specifically lists in Markdown can, when encapsulated in a container, be interpreted as menu structures in the game. The list items becoming the options one must choose from. An example of a game that uses menu's extensively is "80 day's" by Inkle. Unfortunately their game engine Ink, does menu's in a way that is easy to write but hard to read, making it very powerfull for programmers, but horrible for proofreaders. Fountain Exponential hopes to make it's menu's easier to read, although they may be harder to write. 
+
+And example of a simple menu structure, where the optional display class is added:
+```
+::: {.navigationMenu}
+Where to go next?
+- Visit the shops. -> Shopping scene
+* Visit the mayor. -> A talk with the Mayor
++ Leave town. -> On the road again 
+:::
+```
+And example of a hierarchical and thus more complex menu structure, although the indenting does help:
+```
+::: {.conversationMenu}
+What shall we talk about?
+- Talk about shopping?
+  @Avatar
+  How is shopping going?.
+  @Conversationnist
+  It's fine.
+  :::
+  Your response?
+  - Great!
+    @Avatar
+    Great to see you enjoy yourself.
+  + Ok.
+    @Avatar
+    Nice to see you up and about.
+  :::
++ Stay silent. -> Stare at each other
+:::
+```
+
