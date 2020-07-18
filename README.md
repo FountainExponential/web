@@ -82,12 +82,51 @@ Using the most suitable extensions for Fountain Exponential will make it compati
 Adding Markdown extensions will make it more complex, but achieve the same things as it's competitors in a far simplify way. This will make creation of the story of a game easier, as well as allow for more clarity and ease of rewriting.
 
 #### Yaml blocks for data interaction
+Yaml blocks in Markdown are fenced by triple minuses ---
+
 Yaml blocks are generally used in Markdown as a place to store values that get replaced in the text, making the Markdown into a template. It can only be added to the front of the file, hence the name "Yaml Front Matter" used by markdown interpreters.
 
-Adding the ability to add Yaml to the front of a scene will make it possible to have trigger or event definitions for a scene. Other declarative data interaction may also be possible. The Yaml data blocks may be extended as a writer sees fit and an interpreting game engine can use or ignore whatever it finds. The Yaml blocks together with the code blocks makes it possible for the text to interact with the game systems.
+Adding the ability to add Yaml to the front of a scene will make it possible to have trigger or event definitions for a scene. Other declarative data interaction may also be possible. The Yaml data blocks may be extended as a writer sees fit and an interpreting game engine can use or ignore whatever it finds. The Yaml blocks together with the code blocks makes it possible for the text to interact with the game systems. For example:
+```
+### Shopkeeper scene
+---
+subscriptions:
+  triggerSituations:
+    - location:  GothamCity
+      shoparea:  Downtown
+      action:    Interact
+    - location:  WindyCity
+      shoparea:  Docks
+      action:    Interact
+money: 100
+cokecans: 0
+---
+@Shopkeeper
+Hello what will it be?
+::: {.shopMenu}
+- A can of coke
+  @Player
+  I'll have a can of coke.
+  @Shopkeeper
+  Here you go.
+  `money -= 1; cokecans += 1;`
+* Information
+  @Player
+  Know any place that sells Grand cru de Colombia?
+  @Shopkeeper  
+  I'll take your tenner and give you directions.
+  `money -= 10; addDirections();`
+  As for Pablo, say Tony send ya.
++ Nothing
+  @Player
+  Sorry, nothing for now.
+:::
+@Player
+Thank you.
+```
 
 #### Attribute blocks
-Attributes in Markdown generally are started by open accolade { and end with the closing accolade }.  When using Markdig  or Kramdown they translate to attributes on an element in HTML.
+Attributes in Markdown are started by an open accolade { and end with a closing accolade }. The opening accolade is optionaly followed by a colon :, but this is a residue of Inline Attribute Lists (ISL), that does not match well with the hash # of id and dot . of class attributes. When using Markdig or Kramdown they translate to attributes on an element in HTML.
 
 Attributes can be attached to:
 - The previous inline element if the previous element is not a literal
@@ -106,11 +145,13 @@ This text has class {.haughty}
 ```
 - A name=value or name="value" that will be appended as an attribute of the HTML element
 ```
-This text has data tagged to it {: command=tag}
+This text has data tagged to it {commandId=tag}
 ```
-- An empty attribute block {::} can be used to separate an element from the rest of the text. For example:
+- An empty attribute block {} or {::} can be used to separate an element from the rest of the text. For example:
 ```
-This {::}text{:.special} is special
+The {}readability{.emphasis} focused way.
+or
+Ths {::}programming{animation=woosh display=blink hover=haha} focused way.
 ```
 
 Adding attribute blocks that describe how an element should be displayed makes it possible to style the text differently depending on the situation or add extra data for the interpreting game. For example, a command line text parser could used data attributed to choices to determine where the flow of the game should go.
@@ -138,7 +179,7 @@ And example of a hierarchical and thus more complex menu structure, although the
 ::: {.conversationMenu}
 What shall we talk about?
 - Talk about shopping?
-  @Avatar
+  @Player
   How is shopping going?.
   @Conversationnist
   It's fine.
