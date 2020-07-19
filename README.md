@@ -44,7 +44,7 @@ Describing Shape/Form is generally omitted by screenplay writers in favor of a m
 
 Centering the text around entities would allow for organization of the text similar to what is in computer science called object oriented programming. Although the main story should read as a screenplay, interaction with entities not relevant to the story should be relegated to files holding the elements and interaction specific to that entity.
 
-## Fountain Exponential technical similarities
+## Fountain Exponential technical details
 ### Fountain
 Fountain has support for screenplay specific things like Act, Sequence and Scene. These are spans of time. An Act is a defined part of the story structure. A Sequence, is contained in an Act and had to do with the reals of film being switched, but is now multiple scenes. A Scene is a span of time on a specific location, possibly with sub locations. These spans of time are similar to methods or functions in a programming language, because once they get called, some action gets performed.
 
@@ -86,7 +86,18 @@ Yaml blocks in Markdown are fenced by triple minuses ---
 
 Yaml blocks are generally used in Markdown as a place to store values that get replaced in the text, making the Markdown into a template. It can only be added to the front of the file, hence the name "Yaml Front Matter" used by markdown interpreters.
 
-Adding the ability to add Yaml to the front of a scene will make it possible to have trigger or event definitions for a scene. Other declarative data interaction may also be possible. The Yaml data blocks may be extended as a writer sees fit and an interpreting game engine can use or ignore whatever it finds. The Yaml blocks together with the code blocks makes it possible for the text to interact with the game systems. For example:
+Tagging Yaml data to Scenes and Moments is easy, unobtrusive an flexible. The interpreting game engine can use or ignore whatever it finds. The Yaml blocks together with the code blocks makes it possible for the text to interact with the rest of the game systems. 
+
+###### Triggers and events
+Adding the ability to add Yaml to the front of a Scene will make the scene be scannable for trigger or event definitions that should be handled by the interpreter. In this way, an action in the game can trigger the scene and display the text of the scene to the user.
+
+###### Broadcasts and messages when entering
+Other declarative data interaction may also be possible, like sending a data notification, when entering a scene, to a specific component or to all that are listening on a topic. In many cases tagging the Yaml of Message containing the data of a transaction would be better suited to a Moment, like that of buying an item. 
+
+###### Data locality
+The Yaml data blocks may be extended as a writer sees fit, but the data is always related and thus local to that Scene or Moment. A similar Scene in a different act does not have that data unless a copy is specified in code.
+
+For example:
 ```
 ### Shopkeeper scene
 ---
@@ -98,6 +109,12 @@ subscriptions:
     - location:  WindyCity
       shoparea:  Docks
       action:    Interact
+broadcasts:
+  - topic: history
+    anotherSaveArrival: true
+messages:
+  - to: Act1
+    visitedShopkeeper: true
 money: 100
 cokecans: 0
 ---
@@ -110,19 +127,29 @@ Hello what will it be?
   @Shopkeeper
   Here you go.
   `money -= 1; cokecans += 1;`
-* Information
-  @Player
-  Know any place that sells Grand cru de Colombia?
-  @Shopkeeper  
-  I'll take your tenner and give you directions.
-  `money -= 10; addDirections();`
-  As for Pablo, say Tony send ya.
+* Information =| Info acquisition moment
 + Nothing
   @Player
   Sorry, nothing for now.
 :::
 @Player
 Thank you.
+
+#### Info acquisition Moment
+---
+broadcasts:
+  - topic: research
+    anotherPieceOfKnowledge: true
+messages:
+  - to: Infentory
+    changeMoney: -10
+---
+@Player
+Know any place that sells Grand cru de Colombia?
+@Shopkeeper  
+I'll take your tenner and give you directions.
+`addDirections();`
+Ask for Pablo. Say Tony send ya.
 ```
 
 #### Attribute blocks
@@ -194,5 +221,3 @@ What shall we talk about?
   :::
 + Stay silent. -> Stare at each other
 :::
-```
-
