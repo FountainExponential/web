@@ -63,12 +63,18 @@ A Moment is an optional part of the Scene. A moment is still a span of time on a
 #### Slices
 A Slice is an optional part of a text. It is part of a Scene or Moment, but displays text based on the state of the game or the player. It can start and stop anywhere in the text and is intended to embellish the text. It is similar to some functionality in Ink that made the text adapt to the choices and situation of the player in an award winning way.
 
-#### Continuations and detours to Scenes, Moments and Slices
-Links and References allow the story to divert to other Scenes, Moments and Slices, but a continuation will continue there while a detour will revert back to the originating story. The difference between a continuation and detour can be denoted by - and =.
+#### Continuations and detours 
+Links and menu choices allow the story to divert to other Scenes, Moments and Slices by user input. A continuation or detour will divert the scene without waiting for input by the user. A detour will revert back to the originating story, but a continuation will continue on with the diversion. The difference between a continuation and detour can be denoted by a minus sign - and a equal sign = respectively.
 
 Showing the continued or detoured to text integrated or separate from the original text, therefor with or without line breaks.  The difference between integrating or separating the diverted to text can be denoted by > and |. This is similar to Yaml. 
 
-There thus are 4 types of arrows ->, =>, -|, =|. This also implies that the game engine keeps track of the stack of Scenes, Moments and Slices, in at least a rudimentary way, so it can go back to a previous text.
+There are thus 4 types of arrows 
+a -> single arrow 
+a => double arrow
+a -| single stump and
+a =| double stump
+
+This also implies that the game engine keeps track of the stack of Scenes, Moments and Slices, in at least a rudimentary way, so it can go back to a previous text.
 
 #### References to other files
 To focus on the main story in the main file it should be possible to relegate the non relevant Scenes, Moments and Slices to other files. Adventure games have a lot of interaction that adds color to the story, but distracts from the drama. For instance the examine action generally results in a scene where the object, person or location is described, but this Scene seldom furthers the story. This description Scene should therefore be in another file, ideally grouped with other Scenes, Moments or Slices around a specific Entity.
