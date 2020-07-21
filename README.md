@@ -110,10 +110,10 @@ For example:
 ```
 ### The meeting
 ----
-gender: f
+gender: female
 ----
 @Player
-Greeting `= (gender == f)? "Madam" : "Sir";`
+Greeting `= (gender == female)? "Madam" : "Sir";`
 ```
 
 ##### Conditionals
@@ -161,7 +161,25 @@ A continuation of a statement can only done inside of an Act, Scene, Moment or S
 
 The syntax for conditionals is deliberately closer to Markdown then to any of those templating engines.  Firstly because they must be part of the languages and secondly that combining  with template engines can still be done without integration issues.
 
-For example showing an if/else structure also showing that multiple lines can be covered by the conditional 
+A simple example showing the enclosed text being assigned to a variable
+~~~
+### Finding a catch phrase
+```
+player.catchphrase =
+```
+@Player
+That's cool.
+`;`
+
+
+@Player
+I think I got it!
+It'll be:
+`= player.catchphrase;`
+
+~~~
+
+An example showing an if/else structure also showing that multiple lines can be covered by the conditional 
 ~~~
 ### Candy heat
 ----
