@@ -71,7 +71,9 @@ Showing the continued or detoured to text integrated or separate from the origin
 There thus are 4 types of arrows ->, =>, -|, =|. This also implies that the game engine keeps track of the stack of Scenes, Moments and Slices, in at least a rudimentary way, so it can go back to a previous text.
 
 #### References to other files
-To focus on the main story in the main file it should be possible to relegate the non relevant Scenes, Moments and Slices to other files. Adventure games have a lot of interaction that, but adds color to story but distracts from the drama. For instance the examine action generally results in a scene where the object, person or location is described, but this Scene seldom furthers the story. This description Scene should therefore be in another file, ideally grouped with other Scenes, Moments or Slices around a specific Entity. 
+To focus on the main story in the main file it should be possible to relegate the non relevant Scenes, Moments and Slices to other files. Adventure games have a lot of interaction that adds color to the story, but distracts from the drama. For instance the examine action generally results in a scene where the object, person or location is described, but this Scene seldom furthers the story. This description Scene should therefore be in another file, ideally grouped with other Scenes, Moments or Slices around a specific Entity.
+
+The references to other files could be defined in the metadata at the top of the Fountain file, but could also be included run time as special inline code imports.
 
 ### Commonmark
 Commonmark is the Markdown standard all Markdown implementers agree on. Fountain is a bit strange, because it does not adhere to the Commonmark standard. The thinking being that Fountain is specific for screenplay writing and things like tables will never be in a screenplay.
@@ -110,10 +112,10 @@ Markdown inline \`code\` has \`back-ticks around\` it.
 Inline code is a span of instructions that are executed when the story passes that point, but change nothing of the text. It is simply a way of signaling of working with the other game systems. 
 
 ##### Injected Values
-Inline code is a span of instructions that are executed when the story passes that point, but the value the code produces is injected into the text. In this way the text can vary based upon the situation or show the stats of the other game systems.
+Inline code is a span of instructions that are executed when the story passes that point, but the value the code produces is injected into the text.  In this way the text can vary based upon the situation or show the stats of the other game systems.
 
-Inline code injecting a value in the text is made by containing the code with backticks `, but starting with an equal sign.
-For example:
+Inline code injecting a value in the text is made by containing the code with backticks `, but starting with an equal sign. Technically it's an expression being evaluated and converted into a string.
+And example of showing different text depending on the situation:
 ```
 ### The meeting
 ----
@@ -122,6 +124,36 @@ gender: female
 @Player
 Greeting `= (gender == female)? "Madam" : "Sir";`
 ```
+An example of showing stats 
+```
+### The brag
+@Player
+I got  `= 3 + 4;` in one go.
+```
+
+#### Import of files
+Importing another file at run time is done by special inline code fenced with back ticks but starting with a percentage sign %. This is a mixture of T4 template and Typescript styles of adding metadata.
+
+```
+`% import * as city from "city"; `
+```
+
+Or more specific
+```
+`% import CityCenter as citycenter from "city"; `
+```
+
+#### Adding functionality
+Adding class and a function definitions to the code is possible, but should really be done in a code behind file.
+
+~~~
+```+ 
+function playertest()
+{
+	Player.test();
+}
+```
+~~~
 
 ##### Conditionals
 Inline code conditional are instructions that are executed when the story passes that point, but determine if the following story elements should be shown. The elements that are mainly conditioned paragraphs or choice options.
@@ -161,7 +193,8 @@ I'll have you know, I'm a master at the noble art of boxing.
 The player makes some intimidating moves.
 ```
 
-#### Code statements spanning multiple blocks or inline code
+#### Interleaving tekst and code
+Interleaving tekst and code implies that code statements span multiple blocks or inline code.
 A statement started in one code block  or inline code could continue in a following code block or inline code, making text and code weave together. This is similar to a template language like Microsoft T4 Templates or tools like Jekyll, Hugo or Pandoc. The text caught in between the statements will be treated as a hard coded string value by the code and when not assigned to a value, will be assumed it was meant to return and insert it in the text.
 
 A continuation of a statement can only done inside of an Act, Scene, Moment or Slice. Because it's bound to these bounds, it must be part of the language or at least respect these limitations. Simply cutting an pasting, like template languages do, can lead to code not working or even worse code working sometimes and not working other times.
