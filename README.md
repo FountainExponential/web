@@ -46,6 +46,8 @@ Centering the text around entities would allow for organization of the text simi
 
 ## Fountain Exponential technical details
 ### Fountain
+Fountain most important feature is the character labeled dialog, so well known in the writing forms of screenplay, stageplay, teleplay and radioplay. Some interactive fiction formats mimic the labeling, but do so by adding the character in front of the line followed by a colon and then the spoken text. Fountains way of having the characters name in the line before the dialog is easier to read, but a bit more verbose. Optionally the character can be prefixed with an @ sign for clarity. Dialog ends with an empty line, but dialog may continue if 2 spaces are put in the empty line. This is exactly like the Fountain specification, but it is important to repeat here.
+
 Fountain has support for screenplay specific things like Act, Sequence and Scene. These are spans of time. An Act is a defined part of the story structure. A Sequence, is contained in an Act and had to do with the reals of film being switched, but is now multiple scenes. A Scene is a span of time on a specific location, possibly with sub locations. These spans of time are similar to methods or functions in a programming language, because once they get called, some action gets performed.
 
 #### Moments
@@ -54,8 +56,12 @@ A Moment is an optional part of the Scene. A moment is still a span of time on a
 #### Slices
 A Slice is an optional part of a text. It is part of a Scene or Moment, but displays text based on the state of the game or the player. It can start and stop anywhere in the text and is intended to embellish the text. It is similar to some functionality in Ink that made the text adapt to the choices and situation of the player in an award winning way.
 
-#### Links and References to Scenes, Moments and Slices
-Links and References allow the story to divert to other Scenes, Moments and Slices, but a Link will continue there while a Reference will revert back to the originating story. Also showing the diverted to text with or without line breaks, therefor integrating it in the original text or making it separate from it. The difference between link and reference can be denoted by - and =. The difference between integrating or separating the diverted to text can be denoted by > and | similar to Yaml. There thus be 4 types of arrows ->, =>, -|, =|. This also implies that the game engine keeps track of the stack of Scenes, Moments and Slices, so it can go back to a previous one.
+#### Continuations and detours to Scenes, Moments and Slices
+Links and References allow the story to divert to other Scenes, Moments and Slices, but a continuation will continue there while a detour will revert back to the originating story. The difference between a continuation and detour can be denoted by - and =.
+
+Showing the continued or detoured to text integrated or separate from the original text, therefor with or without line breaks.  The difference between integrating or separating the diverted to text can be denoted by > and |. This is similar to Yaml. 
+
+There thus are 4 types of arrows ->, =>, -|, =|. This also implies that the game engine keeps track of the stack of Scenes, Moments and Slices, in at least a rudimentary way, so it can go back to a previous text.
 
 #### References to other files
 To focus on the main story in the main file it should be possible to relegate the non relevant Scenes, Moments and Slices to other files. Adventure games have a lot of interaction that, but adds color to story but distracts from the drama. For instance the examine action generally results in a scene where the object, person or location is described, but this Scene seldom furthers the story. This description Scene should therefore be in another file, ideally grouped with other Scenes, Moments or Slices around a specific Entity. 
@@ -65,15 +71,150 @@ Commonmark is the Markdown standard all Markdown implementers agree on. Fountain
 Adding missing Commonmark functionality will make it easier for experienced Markdown users to pick it up.
 
 #### Links
-Adding links will enable branching stories like Gamebooks. Following links you can move from text to text, allowing you to create your own story.
+Adding links will enable branching stories like Gamebooks. Following links you can move from text to text, allowing you to create your own story. Links are different from continuations or detours in that links have to be clicked by the user to make the story continue and the other ones do not.
 
 #### Lists and Images
 Adding lists, images and other visual elements, will make it more expressive. A Gamebook formatted game gets a lot more lively when in story snippets are occasionally accompanied with an image or a list of items.
 
-#### Code blocks and inline code
-Markdown inline \`code\` has \`back-ticks around\` it. It's code blocks are fenced by lines with-three \`\`\` back ticks, with optionally the language after the starting triple back ticks, making the code highlight for the specified language. 
+#### Code blocks
+It's code blocks are fenced by lines with-three \`\`\` back ticks, with optionally the language after the starting triple back ticks, making the code highlight for the specified language. 
 
-Adding code blocks and inline code, interpreting them as instructions that should be executed when the story passes that point will make it possible to interact with the other game systems. The difference between Code blocks and the later mentioned declarative Yaml blocks, is that Code blocks are run every time the story passes the point of the Code block and the declarative Yaml blocks are only run once as an initialization.
+Adding code blocks and interpreting them as instructions that should be executed when the story passes that point will make it possible to interact with the other game systems.
+As Markdown is highly linked with Html and CSS it is natural to assume that the code should be JavaScript. This does not need to be the case as the code can be Java, C#, Python or any other language you desire. The choice of language may be influenced by the interpreter you use. All programming languages mentioned before, use a similar style of calling functions and checking conditions. Limiting the code to those things, will make it programming language agnostic and, more importantly, be easier to read.
+A difference between Code blocks and the later mentioned declarative Yaml blocks, is that Code blocks are run every time the story passes the point of the Code block and the declarative Yaml blocks are only run once as an initialization.
+An example of a code block example:
+~~~
+### Enter the arena
+```
+Player.adrainalinrush();
+Player.strength += 1;
+Crowd.exitement = 100;
+```
+The player walks exited onto the sand of the arena and the crowd goes wild.
+
+@Player
+Woouha!
+~~~
+
+#### Inline code
+Markdown inline \`code\` has \`back-ticks around\` it.
+
+##### Regular Inline code
+Inline code is a span of instructions that are executed when the story passes that point, but change nothing of the text. It is simply a way of signaling of working with the other game systems. 
+
+##### Injected Values
+Inline code is a span of instructions that are executed when the story passes that point, but the value the code produces is injected into the text. In this way the text can vary based upon the situation or show the stats of the other game systems.
+
+Inline code injecting a value in the text is made by containing the code with backticks `, but starting with an equal sign.
+For example:
+```
+### The meeting
+----
+gender: f
+----
+@Player
+Greeting `= (gender == f)? "Madam" : "Sir";`
+```
+
+##### Conditionals
+Inline code conditional are instructions that are executed when the story passes that point, but determine if the following story elements should be shown. The elements that are mainly conditioned paragraphs or choice options.
+Acts, Scenes, Moment and Slices can not be in a condition, as after a link was clicked or a choice was made something should follow. This enables the static checking of the validity of links and choice options. This also implies that a conditional can not condition something outside of an Act, Scene, Moment or Slice. 
+
+An inline code conditional in the text is made by containing the code with backticks `, but starting with an question mark.
+For example, a simple conditional:
+```
+### The salute
+@Player
+`? hasSword && taunting > 50`  I'll show you the tip of my sword!
+
+The player makes some intimidating moves.
+```
+
+A simple conditional with an else option
+```
+### The salute
+@Player
+`? hasSword && intelligence < 50`  I'll show you the tip of my sword! `:`  Dare to come an play?
+
+The player makes some intimidating moves.
+```
+
+A conditional that check multiple conditions, but takes the first that fits, similar to coalesce in SQL  or a switch statement with a default case.
+```
+### The salute
+@Player
+`? hasSword && intelligence < 50`  
+I'll show you the tip of my sword! 
+`:`  
+`? hasSword` 
+Dare to come an play? 
+`:`  
+I'll have you know, I'm a master at the noble art of boxing.
+
+The player makes some intimidating moves.
+```
+
+#### Code statements spanning multiple blocks or inline code
+A statement started in one code block  or inline code could continue in a following code block or inline code, making text and code weave together. This is similar to a template language like Microsoft T4 Templates or tools like Jekyll, Hugo or Pandoc. The text caught in between the statements will be treated as a hard coded string value by the code and when not assigned to a value, will be assumed it was meant to return and insert it in the text.
+
+A continuation of a statement can only done inside of an Act, Scene, Moment or Slice. Because it's bound to these bounds, it must be part of the language or at least respect these limitations. Simply cutting an pasting, like template languages do, can lead to code not working or even worse code working sometimes and not working other times.
+
+The syntax for conditionals is deliberately closer to Markdown then to any of those templating engines.  Firstly because they must be part of the languages and secondly that combining  with template engines can still be done without integration issues.
+
+For example showing an if/else structure also showing that multiple lines can be covered by the conditional 
+~~~
+### Candy heat
+----
+favoriteFood: peppers
+----
+@Challenger
+I dare you to eat this Madam Janet.
+
+```
+if(favoriteFood == peppers)
+{
+```
+
+@Player
+Sure, I'll eat it.
+
+The player chows down on the pepper, amazing the challenger.
+
+```
+}
+else
+{
+```
+
+@Challenger
+Come on, do it.
+
+@Player
+No way, josé.
+
+The challenger eats the pepper mockingly.
+
+@Challenger
+Wuss.
+
+`}`
+~~~
+
+An example showing a switch/case structure using C# style compact code
+~~~
+### Candy heat
+----
+favoriteDessert: ice
+----
+@Host
+Care for dessert?
+@Player
+`switch(favoriteDessert){`
+	`case "ice":` I'd love some ice-cream.
+	`case "thee":` I'll have a thee, please.
+	`default:` Just a glass of water would be fine.
+`}`
+~~~
 
 ### Markdown Extensions
 Markdown extensions are added to the Markdown language by implementers, but are not standardized. 
@@ -221,3 +362,4 @@ What shall we talk about?
   :::
 + Stay silent. -> Stare at each other
 :::
+```
