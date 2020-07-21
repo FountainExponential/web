@@ -52,6 +52,8 @@ Describing Shape/Form is generally omitted by screenplay writers in favor of a m
 Centering the text around entities would allow for organization of the text similar to what is in computer science called object oriented programming. Although the main story should read as a screenplay, interaction with entities not relevant to the story should be relegated to files holding the elements and interaction specific to that entity.
 
 ## Fountain Exponential technical details
+The syntax of Fountain Exponential expands uppon the Fountain syntax that can be found on https://fountain.io/syntax It also merges back in some features of Markdown CommonMark and the Markdown Extensions.
+
 ### Fountain
 Fountain most important feature is the character labeled dialog, so well known in the writing forms of screenplay, stageplay, teleplay and radioplay. Some interactive fiction formats mimic the labeling, but do so by adding the character in front of the line followed by a colon and then the spoken text. Fountains way of having the characters name in the line before the dialog is easier to read, but a bit more verbose. Optionally the character can be prefixed with an @ sign for clarity. Dialog ends with an empty line, but dialog may continue if 2 spaces are put in the empty line. This is exactly like the Fountain specification, but it is important to repeat here.
 
@@ -66,7 +68,8 @@ A Slice is an optional part of a text. It is part of a Scene or Moment, but disp
 #### Continuations and detours 
 Links and menu choices allow the story to divert to other Scenes, Moments and Slices by user input. A continuation or detour will divert the scene without waiting for input by the user. A detour will revert back to the originating story, but a continuation will continue on with the diversion. The difference between a continuation and detour can be denoted by a minus sign - and a equal sign = respectively.
 
-Showing the continued or detoured to text integrated or separate from the original text, therefor with or without line breaks.  The difference between integrating or separating the diverted to text can be denoted by > and |. This is similar to Yaml. 
+Showing the continued or detoured to text as integrated or separate from the original text, is done in a similar way as Yaml does it, by respecting the line breaks of the text or removing the line breaks, making it seem like it's one line.  The way to denote one or the other is by a greater then sign > or a vertical pipe | 
+
 
 There are thus 4 types of arrows 
 a -> single arrow 
@@ -427,3 +430,36 @@ What shall we talk about?
 + Stay silent. -> Stare at each other
 :::
 ```
+
+## Acknowledgements
+I would like to acknowledge the foundational work that Fountain Exponential builds upon.
+
+### Fountain
+Whiteout the foundational work on Fountain by John August, Nima Yousefi and Stu Maschwitz, Fountain Exponential would not be possible. 
+Please check out Fountain the markup syntax for writing, editing and sharing screenplays in plain human-readable text on 
+https://fountain.io/
+
+The Fountain syntax
+https://fountain.io/syntax
+
+The software that uses Fountain
+https://fountain.io/apps 
+The long list of software using the Fountain syntax on the Fountain Apps page stands testament to it's success and confirms that there is a need for interoperability in writing tools.
+
+## Markdown
+Whiteout the foundational work on Markdown by John Gruber and "the internet's own boy" Aaron Swartz.
+Mark Grubers site Daring Fireball hosts the original Markdown project from 17 Dec 2004
+https://daringfireball.net/projects/markdown/
+
+The Markdown: Basics  
+https://daringfireball.net/projects/markdown/basics
+
+The Markdown: Syntax  
+https://daringfireball.net/projects/markdown/syntax
+
+## CommonMark
+The CommonMark initiative trying to create a standard, unambiguous syntax specification for Markdown, along with a suite of comprehensive tests to validate Markdown implementations against this specification. 
+https://commonmark.org/
+
+## Markdown extensions
+There are many Markdown Extensions to be found. For Fountain Exponential the ones that inspired the syntax for Yaml Front Matter, Attributes and Containers where essential for creating a coherent whole. The ones that come to mind are Markdig, Kramdoc, Pandoc, Jykill, Hugo, Markdown-r, VuePress.
