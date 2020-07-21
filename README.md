@@ -4,7 +4,9 @@ Fountain Exponential is a simple markup syntax for writing, editing and sharing 
 
 Extending Fountain the screenplay Markdown format, Fountain Exponential files are eminently readable. When special syntax is required, it is straightforward and intuitive.
 
-Even when viewed as plain text, your game story feels like a screenplay playing in a game.
+The readability makes it easy to proof read and spell check the text. Automatic spell checkers that are generally integrated in word processors, are less error prone if the dialog and action are separate form the code, data or styling.
+
+Even when viewed as plain text, your game story feels like a screenplay, with some game specifics sprinkled on top.
 
 Fountain Exponential supports everything a game story writer is likely to need in the creative phases of writing for a game.
 
@@ -17,7 +19,9 @@ The ability to convert to or from Fountain Exponential gives you the freedom to 
 Fountain Exponential is the Markdown format for branching stories meant to ease game story development and provide a format for archiving stories.
 
 ### Conversion
-A mayor design goal of Fountain Exponential is to create a basis other interactive fiction and gamebook story formats can be converted to and from, similar to Fountain being used as a store and intermediary between different screenplay formats.
+A mayor design goal of Fountain Exponential is to create a basis other interactive fiction and gamebook story formats can be converted to and from. The Fountain format is already successfully being used as a store and intermediary between different screenplay formats. This makes it easier to switch tool or engine and makes creating new tools or engines with innovative features more attractive, because old content can be easier ported to them.
+
+Being able to converted to and from  Fountain Exponential, does imply that can hold all the data all the other formats can hold. New engines and the format they use, will inevitably bring new features and new data to hold. With a comprehensive standard, going from one engine to then next will ensure not all is lost and only the novel features have to be added.
 
 ### Upscaling
 A possible scenario that should be possible with Fountain Exponential, is scaling up a story from a linear Fountain screenplay to branching game script. 
@@ -27,6 +31,9 @@ The key to Fountain Exponential is that it's based on Fountain and thus specifie
 
 ### Ergonomics
 Fountain Exponential will extend Fountain, the Markdown variant specific for the screenplay writing domain, in such a way that the excellent readability of Fountain will remain, but add the branching and triggering aspects for games.
+
+### Proof reading
+Dysorthography and dyslexia are rampant among developers, especially if they are writing in a foreign language. Fountain Exponential makes it easier to proof read and spell check the action, description and dialog of the game.
 
 ### Supports multiple story styles
 The format can be used to tell a literature style story, by only using action in scenes, making it usable for an Interactive Fiction engine. The dialog option creates  an extra dimension, that is vital for characters on screen, just like in many games.
