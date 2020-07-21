@@ -434,7 +434,7 @@ What shall we talk about?
 ## Acknowledgements
 I would like to acknowledge the foundational work that Fountain Exponential builds upon.
 
-### Fountain
+## Fountain
 Whiteout the foundational work on Fountain by John August, Nima Yousefi and Stu Maschwitz, Fountain Exponential would not be possible. 
 Please check out Fountain the markup syntax for writing, editing and sharing screenplays in plain human-readable text on 
 https://fountain.io/
@@ -462,4 +462,4 @@ The CommonMark initiative trying to create a standard, unambiguous syntax specif
 https://commonmark.org/
 
 ## Markdown extensions
-There are many Markdown Extensions to be found. For Fountain Exponential the ones that inspired the syntax for Yaml Front Matter, Attributes and Containers where essential for creating a coherent whole. The ones that come to mind are Markdig, Kramdoc, Pandoc, Jykill, Hugo, Markdown-r, VuePress.
+There are many Markdown Extensions to be found. For Fountain Exponential the ones that inspired the syntax for Yaml Front Matter, Attributes and Containers where essential for creating a coherent whole. The ones that come to mind are GitHub flavored Markdown, Markdig, Kramdoc, Pandoc, Jekyll, Hugo, Markdown-r, VuePress.
