@@ -51,6 +51,19 @@ Describing Shape/Form is generally omitted by screenplay writers in favor of a m
 
 Centering the text around entities would allow for organization of the text similar to what is in computer science called object oriented programming. Although the main story should read as a screenplay, interaction with entities not relevant to the story should be relegated to files holding the elements and interaction specific to that entity.
 
+## Fountain Exponential Vision
+The vision for Fountain Exponential is to make proofreading of a game story as easy as reading a screenplay, while seeing pieces of the context of the story in special block that are easy to ignore, but may give hints to where in the game the text will fit. Having the text be split up in scenes and moments instead of less informative id's, having function calls in the text that have names that describe their intention, Yaml data block that convey data that is meaningful for the story, as well as attributes that alters the display of the elements of the text in predictable ways, will give the reader the context they need to see it the story enfolds properly and the freedom to be creative with the story. The responsibility of a readable story lies with the writer and these blocks of code and data can be done in a badly readable way, just as paragraphs can be written in a badly readable way. We thrust the writer with these tools, as the story should dictate the implementation, although the implementation can have an effect on the story, the writer should take these notes and adapt the story to them, so the story stays true to it's ideas and keeps it's internal consistency in tact.
+
+Being able to convert Fountain Exponential to other formats, decouples the written text from the data used in game. This will make it possible for developers to use a format that is optimized for their game while, not making any demands on the format the writers use. The writers can also embelish the story to their liking without having to worry that the implementation will suffer.
+
+Another part of the vision of Fountain Exponential is to make the story of a game a separate reusable asset similar to an image or a sound file. The story should not be locked up in the code or be specific for an engine. It should be possible to create a remake of the story in a different game engine, without having to rewrite the text of the story.
+
+## Fountain Exponential Principles
+Founctain Exponential tries to uphold the following principles:
+1. The story should be readable. Technical details should detract as little as possible from the story. 
+2. The game engine should make little demand on the story and it's difficulties should be solved in the conversion process to an optimized format for the game.
+3. The game story is an asset just as separate or integrated with the game, as other assets like images and sounds.
+
 ## Fountain Exponential technical details
 The syntax of Fountain Exponential expands uppon the Fountain syntax that can be found on https://fountain.io/syntax It also merges back in some features of Markdown CommonMark and the Markdown Extensions.
 
@@ -434,7 +447,7 @@ What shall we talk about?
 ## Acknowledgements
 I would like to acknowledge the foundational work that Fountain Exponential builds upon.
 
-## Fountain
+### Fountain
 Whiteout the foundational work on Fountain by John August, Nima Yousefi and Stu Maschwitz, Fountain Exponential would not be possible. 
 Please check out Fountain the markup syntax for writing, editing and sharing screenplays in plain human-readable text on 
 https://fountain.io/
@@ -446,7 +459,7 @@ The software that uses Fountain
 https://fountain.io/apps 
 The long list of software using the Fountain syntax on the Fountain Apps page stands testament to it's success and confirms that there is a need for interoperability in writing tools.
 
-## Markdown
+### Markdown
 Whiteout the foundational work on Markdown by John Gruber and "the internet's own boy" Aaron Swartz.
 Mark Grubers site Daring Fireball hosts the original Markdown project from 17 Dec 2004
 https://daringfireball.net/projects/markdown/
@@ -457,9 +470,9 @@ https://daringfireball.net/projects/markdown/basics
 The Markdown: Syntax  
 https://daringfireball.net/projects/markdown/syntax
 
-## CommonMark
+### CommonMark
 The CommonMark initiative trying to create a standard, unambiguous syntax specification for Markdown, along with a suite of comprehensive tests to validate Markdown implementations against this specification. 
 https://commonmark.org/
 
-## Markdown extensions
+### Markdown extensions
 There are many Markdown Extensions to be found. For Fountain Exponential the ones that inspired the syntax for Yaml Front Matter, Attributes and Containers where essential for creating a coherent whole. The ones that come to mind are GitHub flavored Markdown, Markdig, Kramdoc, Pandoc, Jekyll, Hugo, Markdown-r, VuePress.
