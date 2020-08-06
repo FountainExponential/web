@@ -59,13 +59,15 @@ Being able to convert Fountain Exponential to other formats, decouples the writt
 Another part of the vision of Fountain Exponential is to make the story of a game a separate reusable asset similar to an image or a sound file. The story should not be locked up in the code or be specific for an engine. It should be possible to create a remake of the story in a different game engine, without having to rewrite the text of the story.
 
 ## Fountain Exponential Principles
-Founctain Exponential tries to uphold the following principles:
-1. The story should be readable. Technical details should detract as little as possible from the story. 
+Fountain Exponential tries to uphold the following principles:
+1. The story should be readable. Technical details, although important to developers, but matter little to writers, should detract as little as possible from the story.
 2. The game engine should make little demand on the story and it's difficulties should be solved in the conversion process to an optimized format for the game.
 3. The game story is an asset just as separate or integrated with the game, as other assets like images and sounds.
+4. The game story should be transferable between game engines.
+5. The game story should be able to hold the specific enhancements of an engine, without making the text less readable.
 
 ## Fountain Exponential technical details
-The syntax of Fountain Exponential expands uppon the Fountain syntax that can be found on https://fountain.io/syntax It also merges back in some features of Markdown CommonMark and the Markdown Extensions.
+The syntax of Fountain Exponential expands upon the Fountain syntax that can be found on https://fountain.io/syntax It also merges back in some features of Markdown CommonMark and the Markdown Extensions.
 
 ### Fountain
 Fountain most important feature is the character labeled dialog, so well known in the writing forms of screenplay, stageplay, teleplay and radioplay. Some interactive fiction formats mimic the labeling, but do so by adding the character in front of the line followed by a colon and then the spoken text. Fountains way of having the characters name in the line before the dialog is easier to read, but a bit more verbose. Optionally the character can be prefixed with an @ sign for clarity. Dialog ends with an empty line, but dialog may continue if 2 spaces are put in the empty line. This is exactly like the Fountain specification, but it is important to repeat here.
