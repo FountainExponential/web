@@ -60,11 +60,12 @@ Another part of the vision of Fountain Exponential is to make the story of a gam
 
 ## Fountain Exponential Principles
 Fountain Exponential tries to uphold the following principles:
-1. The story should be readable. Technical details, although important to developers, but matter little to writers, should detract as little as possible from the story. Therefor it is preferred to group code or data in a block or span, instead of sprinkling them through the text, as the reader can easier skip blocks and spans, if those are not relevant. 
-2. The game engine should make little demand on the story and it's difficulties should be solved in the conversion process to an optimized format for the game.
-3. The game story is an asset just as separate or integrated with the game, as other assets like images and sounds.
-4. The game story should be transferable between game engines.
-5. The game story should be able to hold the specific enhancements of an engine, without making the text less readable. Extending blocks and spans only has impacts on the length of text to skip, if those are not relevant for the reader.
+1. A Fountian screenplay should be usable as a basis for a Fountain Exponential game story, by adding extra scenes for the branching story, ways to branch the story, like choices and links and embellish the story with technical details to interact with the rest of the game.
+2. The story should be readable. Technical details, although important to developers, but matter little to writers, should detract as little as possible from the story. Therefor it is preferred to group code or data in a block or span, instead of sprinkling them through the text, as the reader can easier skip blocks and spans, if those are not relevant. 
+3. The game engine should make little demand on the story and it's difficulties should be solved in the conversion process to an optimized format for the game.
+4. The game story is an asset just as separate or integrated with the game, as other assets like images and sounds.
+5. The game story should be transferable between game engines.
+6. The game story should be able to hold the specific enhancements of an engine, without making the text less readable. Extending blocks and spans only has impacts on the length of text to skip, if those are not relevant for the reader.
 
 ## Fountain Exponential technical details
 The syntax of Fountain Exponential expands upon the Fountain syntax that can be found on https://fountain.io/syntax It also merges back in some features of Markdown CommonMark and the Markdown Extensions.
