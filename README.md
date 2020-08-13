@@ -26,8 +26,17 @@ Being able to converted to and from  Fountain Exponential, does imply that can h
 ### Upscaling
 A possible scenario that should be possible with Fountain Exponential, is scaling up a story from a linear Fountain screenplay to branching game script. 
 
-Dialog separate from action
-The key to Fountain Exponential is that it's based on Fountain and thus specifies Characters and Dialog separate from the story. This makes it a better choice for a visual medium like a game.
+This could be divided in the following levels
+1. The basic story, without diversions making it equal to a movie script.
+2. An alternating story, that keeps to main flow of the story, but takes small detours.
+3. A responding story, that adapts the main flow of the story after a detour.
+4. A branching story, that deviates from the main story and does not come back to it, having multiple endings.
+5. An open ended story, that has no main story flow and no ending, providing responses to player choices based on basic story content, on previous choices or novel content.
+
+A side story, is a detour of the main story. It can change the main story, making it respond or return to the main story without making a change to it, providing only backdrop. A vignette is a very small side story providing only backdrop. An open ended story is made up of multiple side stories and vignettes, where the main story is the player being in the game world without end.
+
+### Dialog separate from action
+The key to Fountain Exponential is that it's based on Fountain and thus specifies Characters and Dialog separate from the story. This makes it a better choice for a visual medium like a game, where the location and action is shown instead of described.
 
 ### Ergonomics
 Fountain Exponential will extend Fountain, the Markdown variant specific for the screenplay writing domain, in such a way that the excellent readability of Fountain will remain, but add the branching and triggering aspects for games.
@@ -35,21 +44,35 @@ Fountain Exponential will extend Fountain, the Markdown variant specific for the
 ### Proof reading
 Dysorthography and dyslexia are rampant among developers, especially if they are writing in a foreign language. Fountain Exponential makes it easier to proof read and spell check the action, description and dialog of the game.
 
-### Supports multiple story styles
-The format can be used to tell a literature style story, by only using action in scenes, making it usable for an Interactive Fiction engine. The dialog option creates  an extra dimension, that is vital for characters on screen, just like in many games.
+### Supports multiple story forms
+The format can be used to tell a literature story form, by only using action in scenes, making it usable for an Interactive Fiction engine. The dialog option creates an extra dimension, that is vital for characters that are shown on screen, just like in many games.
 
-Fountain Exponential is intended to support various game modes like text only adventure style games, illustrated gamebook style games, as well as games that host text in a 2d or 3d world. The flow of control could be done via a graphical user interface, triggers on actions, a text menu, links in the text or a parser interpreting typed text.
+Fountain Exponential is intended to support various game modes like text only adventure games, illustrated gamebook type games, as well as games that host text in a 2d or 3d world. It is agnostic about the flow of control in the game, be it via a graphical user interface, triggers on actions, a text menu, links in the text or a parser interpreting typed text. Use what suits your game and engine best.
+
+### Organize the text in multiple files
+An average film script is around 110 pages, but the text for a game can be much more, because of the freedom to choice how the story branches and the actions you can do in the game. Luckily text is relatively cheap to create, but managing a mountain of text, gets harder and harder, the bigger it grows. Organizing the text in separate but related files can make that mountain manageable, similar to the code for an application.
+
+#### A file per alternative story
+A regular movie script can be seen as a basic game without any choices. On top of that, alternative choices can be added to make the game more immersive, but not change the main flow the story. The responses to those alternatives could be placed in separate files based on some categorization creating for instance a sexy or an aggressive story file next to the main file.
+The sexy or aggressive story could be read as a regular story and choices would only make you jump between one of the stories.
+
+Consider a movie about a detective inquiring about a lost robot. The basic story has the detective ask inquisitive question, but the game could add aggressive or sexy alternatives. The responses to those questions differs from the main story, but the detective will follow along the same path trying to find the lost robot. The aggressive file would hold the aggressive story line and the sexy file the sexy story. The player making a choice in the story would jump from one story line to the other. A responding story could have the scenes trigger on some variable for aggression or sexiness. Proofreading for the sexy or aggressive detective would be simplified, because the story in the file would be complete.
+
+#### A file per entity
+Entities like characters, props and locations can have a life of there own in a game. In a movie these are all subject to the story, but in a game they can have much more depth because there is more time to develop them. The parts of the story do detract from the main story and therefore it would be better to separate them from it. The would be referenced in the main story as a detour, but have little impact on it. 
 
 ### Entities matching Core Knowledge
+In their core entities are special types of variables. In any play one could identify the characters, props and locations as well as certain roles a character play like protagonist or antagonist. All these entities can have elements like facts, values and operations tagged to them. These elements make it possible to interact with the host of the game. The flow of the story can also be changed by these elements as well and the text itself can be changed when variables in the text are replaced.
+
 In development psychology Core Knowledge is the innate knowledge humans and other living creatures are born with. The core knowledge domains are Objects, Agents, Geography, Calculus, Social roles and Shapes/Forms. Although lots is proven about the theory, there are still parts that are controversial. Whether true or not, what is relevant for Fountain Exponential is that basing certain language elements on these domains will make it very intuitive to understand. Fountain already has done part of this by defining Characters describing agents, Props describing objects and Locations describing geography.
 
-All entities in a game they should be able to have elements like facts, values and operations tagged to them. These elements make it possible to interact with the host of the game. The flow of the story can also be changed by these elements as well and the text itself can be changed when variables in the text are replaced.
-
-Specific entities like Characters, Props and Locations should be extended with Groups, Collections, Shapes and other when needed. These should be able to support the human cognition modes of Object interactions, Agent actions, Social Group dynamics, location Geography, calculation operations and Shape/Form description. 
+Specific entities like Characters, Props and Locations should be extended with Groups, Collections, Shapes and other when needed. These should be able to support the human cognition modes of Object interactions, Agent actions, Social Group dynamics, location Geography, calculation operations and Shape/Form description.
 
 Describing Shape/Form is generally omitted by screenplay writers in favor of a more poetic an compact style of describing the location and props. Prop masters and location scouts interpret these colorful descriptions to find objects and places they feel match the intend of the description. Game makers and interpreters could also be given the same freedom, but it should also be possible to be very precise in your description and have the interpreting application synthesize the object or place or have artist draw or model your vision. This way of describing may be very similar to descriptions of archeological finds and places, as the science of archology deals with the same problem.
 
-Centering the text around entities would allow for organization of the text similar to what is in computer science called object oriented programming. Although the main story should read as a screenplay, interaction with entities not relevant to the story should be relegated to files holding the elements and interaction specific to that entity.
+Centering the text around entities would allow for organization of the text similar to what is in computer science called object oriented programming. Although the main story should read as a screenplay, interaction with entities not relevant to the story should be relegated to files holding the elements and interaction specific to that entity. The interactive fiction engine Inform 6 implements the story around entities and Inform 7 puts a logic engine on top of that. However having only entities is a simulation of a world, but that makes telling a story difficult, so Fountain Exponential will have a hybrid approach, starting with the story and having embellishments by entities.
+
+The programming architecture that is supports the idea of roles is that of Data, Context and Interaction (DCI). It supports the tagging of roles by separating interaction from data and context. It defines a business model similar to a domain in Domain Driven Design (DDD), but makes it anemic, in that it only has functionality for it's consistency, but not interaction. The interaction functionality is contained in roles that are put on the entities in the anemic model.  The context is the service or main function that creates the entities and makes them interact with each other.
 
 ## Fountain Exponential Vision
 The vision for Fountain Exponential is to make proofreading of a game story as easy as reading a screenplay, while seeing pieces of the context of the story in special block that are easy to ignore, but may give hints to where in the game the text will fit. Having the text be split up in scenes and moments instead of less informative id's, having function calls in the text that have names that describe their intention, Yaml data block that convey data that is meaningful for the story, as well as attributes that alters the display of the elements of the text in predictable ways, will give the reader the context they need to see it the story enfolds properly and the freedom to be creative with the story. The responsibility of a readable story lies with the writer and these blocks of code and data can be done in a badly readable way, just as paragraphs can be written in a badly readable way. We thrust the writer with these tools, as the story should dictate the implementation, although the implementation can have an effect on the story, the writer should take these notes and adapt the story to them, so the story stays true to it's ideas and keeps it's internal consistency in tact.
@@ -490,3 +513,9 @@ https://commonmark.org/
 
 ### Markdown extensions
 There are many Markdown Extensions to be found. For Fountain Exponential the ones that inspired the syntax for Yaml Front Matter, Attributes and Containers where essential for creating a coherent whole. The ones that come to mind are GitHub flavored Markdown, Markdig, Kramdoc, Pandoc, Jekyll, Hugo, Markdown-r, VuePress.
+
+### Core Knowledge
+The work of mainly Elizabeth Spelke that human and other living beings have innate mental abilities is inspiration for having a story format that supports that.
+
+### Data, Context and Interaction (DCI)
+The work of Trygve Reenskau and James O. Coplien is an inspiration as it takes Object Oriented one step further. By doing so it better matches what happens in the real world or in an imaginary world as in a game or on stage. The idea of entities performing a role in DCI, matches with agents, objects or geography performing a role in core knowledge and characters, props and locations performing a role in a story.
