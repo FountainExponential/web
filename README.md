@@ -105,9 +105,9 @@ A Moment is an optional part of the Scene. A moment is still a span of time on a
 A Slice is an optional part of a text. It is part of a Scene or Moment, but displays text based on the state of the game or the player. It can start and stop anywhere in the text and is intended to embellish the text. It is similar to some functionality in Ink that made the text adapt to the choices and situation of the player in an award winning way.
 
 #### Continuations and detours 
-Links and menu choices allow the story to divert to other Scenes, Moments and Slices by user input. A continuation or detour will divert the scene without waiting for input by the user. A detour will revert back to the originating story, but a continuation will continue on with the diversion. The difference between a continuation and detour can be denoted by a minus sign - and a equal sign = respectively.
+Links and menu choices allow the story to divert to other Scenes, Moments and Slices by user input. A continuation or detour will divert the scene without waiting for input by the user. A detour will revert back to the originating story, but a deviation will continue on with the diversion. The difference between a deviation and detour can be denoted by a minus sign - and a equal sign = respectively.
 
-Showing the continued or detoured to text as integrated or separate from the original text, is done in a similar way as Yaml does it, by respecting the line breaks of the text or removing the line breaks, making it seem like it's one line.  The way to denote one or the other is by a greater then sign > or a vertical pipe | 
+Showing the deviated or detoured to text as integrated or separate from the original text, is done in a similar way as Yaml does it, by respecting the line breaks of the text or removing the line breaks, making it seem like it's one line.  The way to denote one or the other is by a greater then sign > or a vertical pipe | 
 
 
 There are thus 4 types of arrows 
@@ -117,6 +117,28 @@ a -| single stump and
 a =| double stump
 
 This also implies that the game engine keeps track of the stack of Scenes, Moments and Slices, in at least a rudimentary way, so it can go back to a previous text.
+
+In Fountain the synopses are single lines prefixed by an equals sign =. They can be located anywhere within the screenplay. This can conflict with the double arrow or double stump. To fix this add an exclamation point ! In front of it to make it action text. Alternatively using a double arrow or double stump in a container block would logically be a divert instead of a synopsis, but Fountain writing software does not know about these block.
+```
+# ACT I
+
+= Set up the characters and the story.
+
+EXT. BRICK'S PATIO - DAY
+
+= This scene sets up Brick & Steel's new life as retirees. Warm sun, cold beer, and absolutely nothing to do.
+
+A gorgeous day.  The sun is shining.  But BRICK BRADDOCK, retired police detective, is sitting quietly, contemplating -- something.
+
+!=> Some Detour
+
+:::
+* Some choice
+=> To elsewhere
+* Some other choice
+=| Something else, but integrating here.
+:::
+```
 
 #### References to other files
 To focus on the main story in the main file it should be possible to relegate the non relevant Scenes, Moments and Slices to other files. Adventure games have a lot of interaction that adds color to the story, but distracts from the drama. For instance the examine action generally results in a scene where the object, person or location is described, but this Scene seldom furthers the story. This description Scene should therefore be in another file, ideally grouped with other Scenes, Moments or Slices around a specific Entity.
@@ -519,3 +541,5 @@ The work of mainly Elizabeth Spelke that human and other living beings have inna
 
 ### Data, Context and Interaction (DCI)
 The work of Trygve Reenskau and James O. Coplien is an inspiration as it takes Object Oriented one step further. By doing so it better matches what happens in the real world or in an imaginary world as in a game or on stage. The idea of entities performing a role in DCI, matches with agents, objects or geography performing a role in core knowledge and characters, props and locations performing a role in a story.
+
+
