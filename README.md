@@ -104,7 +104,7 @@ A Moment is an optional part of the Scene. A moment is still a span of time on a
 #### Slices
 A Slice is an optional part of a text. It is part of a Scene or Moment, but displays text based on the state of the game or the player. It can start and stop anywhere in the text and is intended to embellish the text. It is similar to some functionality in Ink that made the text adapt to the choices and situation of the player in an award winning way.
 
-#### Continuations and detours 
+#### Automatic diverts via Deviations and Detours 
 Links and menu choices allow the story to divert to other Scenes, Moments and Slices by user input. A continuation or detour will divert the scene without waiting for input by the user. A detour will revert back to the originating story, but a deviation will continue on with the diversion. The difference between a deviation and detour can be denoted by a minus sign - and a equal sign = respectively.
 
 Showing the deviated or detoured to text as integrated or separate from the original text, is done in a similar way as Yaml does it, by respecting the line breaks of the text or removing the line breaks, making it seem like it's one line.  The way to denote one or the other is by a greater then sign > or a vertical pipe | 
@@ -149,8 +149,8 @@ The references to other files could be defined in the metadata at the top of the
 Commonmark is the Markdown standard all Markdown implementers agree on. Fountain is a bit strange, because it does not adhere to the Commonmark standard. The thinking being that Fountain is specific for screenplay writing and things like tables will never be in a screenplay.
 Adding missing Commonmark functionality will make it easier for experienced Markdown users to pick it up.
 
-#### Links
-Adding links will enable branching stories like Gamebooks. Following links you can move from text to text, allowing you to create your own story. Links are different from continuations or detours in that links have to be clicked by the user to make the story continue and the other ones do not.
+#### Links for interactive Diverts
+Adding links will enable branching stories like Gamebooks. Following links you can move from text to text, allowing you to create your own story. Links are different from deviations or detours in that links have to be clicked by the user to make the story continue and the other ones do not.
 
 #### Lists and Images
 Adding lists, images and other visual elements, will make it more expressive. A Gamebook formatted game gets a lot more lively when in story snippets are occasionally accompanied with an image or a list of items.
@@ -465,7 +465,7 @@ Adding attribute blocks that describe how an element should be displayed makes i
 
 An example of a game that uses attributes extensively, mainly to express emotion in it's text is "Night in the Woods" by Secret Lab, unfortunately their game engine Yarn Spinner adds these attributes in a clunky way making the text less readable. Fountain Exponential hopes to make attributes on text easier to read, although they may be harder to write.
 
-#### Container blocks
+#### Container blocks for interactive Diverts via menu's
 Markdown containers are fenced by triple colons ::: optionally followed by and attribute block. When using Markdig, markdown-it or VuePress they translate to a div in HTML.
 
 Adding container blocks will make it possible change meaning of a part of the text, while still maintaining the readability of Markdown. In a Markdown editor that does not know Fountain Exponential the container does not create problems with syntax highlighting etc.
