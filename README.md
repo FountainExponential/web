@@ -214,7 +214,7 @@ Or more specific
 ```
 
 #### Adding functionality
-Adding class and a function definitions to the code is possible, but should really be done in a code behind file.
+Adding management of code elements like constant, variable, class and function definitions to the code is possible, but should really be done in a code behind file.
 
 ~~~
 ```+ 
@@ -263,9 +263,9 @@ I'll have you know, I'm a master at the noble art of boxing.
 The player makes some intimidating moves.
 ```
 
-#### Interleaving tekst and code
-Interleaving tekst and code implies that code statements span multiple blocks or inline code.
-A statement started in one code block  or inline code could continue in a following code block or inline code, making text and code weave together. This is similar to a template language like Microsoft T4 Templates or tools like Jekyll, Hugo or Pandoc. The text caught in between the statements will be treated as a hard coded string value by the code and when not assigned to a value, will be assumed it was meant to return and insert it in the text.
+#### Interleaving text and code
+Interleaving text and code implies that code statements span multiple blocks or inline code.
+A statement started in one code block  or inline code could continue in a following code block or inline code, making text and code weave together. This is similar to a template language like Microsoft T4 Templates or tools like Jekyll, Hugo or Pandoc. The text caught in between the statements will be treated as a hard coded string value by the code. It is extracted from the text into the code, but when it is not assigned to a value, it will be assumed it was meant to return and insert it in the text.
 
 A continuation of a statement can only done inside of an Act, Scene, Moment or Slice. Because it's bound to these bounds, it must be part of the language or at least respect these limitations. Simply cutting an pasting, like template languages do, can lead to code not working or even worse code working sometimes and not working other times.
 
@@ -470,7 +470,13 @@ Markdown containers are fenced by triple colons ::: optionally followed by and a
 
 Adding container blocks will make it possible change meaning of a part of the text, while still maintaining the readability of Markdown. In a Markdown editor that does not know Fountain Exponential the container does not create problems with syntax highlighting etc.
 
-Specifically lists in Markdown can, when encapsulated in a container, be interpreted as menu structures in the game. The list items becoming the options one must choose from. An example of a game that uses menu's extensively is "80 day's" by Inkle. Unfortunately their game engine Ink, does menu's in a way that is easy to write but hard to read, making it very powerfull for programmers, but horrible for proofreaders. Fountain Exponential hopes to make it's menu's easier to read, although they may be harder to write. 
+Specifically lists in Markdown can, when encapsulated in a container, be interpreted as menu structures in the game. The list items becoming the options one must choose from. An example of a game that uses menu's extensively is "80 day's" by Inkle. Unfortunately their game engine Ink, does menu's in a way that is easy to write but hard to read, making it very powerful for programmers, but horrible for proofreaders. Fountain Exponential hopes to make it's menu's easier to read, although they may be harder to write. 
+
+A menu Item can be  consumable designated with a star* or persistent designated with a plus+.  A consumable menu item can be used once, after witch it wont show up in the menu anymore. A persistent menu item is always available in the menu, whether it is used before or not. 
+
+A continuation designated with a minus- is a persistent menu item that escapes the menu. Technically it is the same as the persistent menu item, but logically it is used as the option that makes no choice and just continues with the story. It could also be called the exit, oops or "not now" option. Having a separate menu symbol for continuation simplifies the checking of the menu structures, by proof reading as well as with linting generating warnings.
+
+Generally the menu is ordered by consumable options, then persistent options and lastly the continuation. The consumable options are first because they are special and more interesting then the regular persistent options. The continuation is last because generally the player arrived at the menu wanting to interact with it and the last thing to do is leave.
 
 And example of a simple menu structure, where the optional display class is added:
 ```
