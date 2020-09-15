@@ -155,6 +155,12 @@ Adding links will enable branching stories like Gamebooks. Following links you c
 #### Lists and Images
 Adding lists, images and other visual elements, will make it more expressive. A Gamebook formatted game gets a lot more lively when in story snippets are occasionally accompanied with an image or a list of items.
 
+#### Internal and Integrated Code
+In order to have a branching story Fountain Exponential must have some flow of control. This is the essential difference between a markup language like Markdown and a programming language like those in the C family like C++, C#, Java, JavaScript, Python, etc.
+Unfortunately code containers like spans and blocks encapsulating  an integrated C style language are rather verbose, especially when used in simple conditions and menu structures. Fountain Exponential's core focus on readability of the text is at odds with this verbosity. An internal language that can evaluate expressions is simply more concise, then a integrated language. Having the option of integrating another language with code containers can still be useful for special integrations with the hosting game or as an escape when the regular things do not work out or if the writer is more comfortable with the integrated language then the internal one. 
+The internal language of Fountain Exponential must not only be concise, but also be clearly distinguishable from the regular text. Mainly this would improve readability of the text and mitigate the possibility of error, but it would also make the implementation easier, as the compiler can also distinguish things more easily.
+The integrated language functions as an extension of the internal language. It can be any C style language as it is exported to an external interpreter or made to compile on the fly. The directives that come out of the integrated code are either Boolean values for conditionals or simple values to be integrated into the text like string, integer, floating point or a list. The language of integrated code can be set with the specific code block, but would normally be set for all the code containers in the metadata of the file.
+
 #### Code blocks
 It's code blocks are fenced by lines with-three \`\`\` back ticks, with optionally the language after the starting triple back ticks, making the code highlight for the specified language. 
 
@@ -175,7 +181,7 @@ The player walks exited onto the sand of the arena and the crowd goes wild.
 Woouha!
 ~~~
 
-#### Inline code
+#### Inline code span
 Markdown inline \`code\` has \`back-ticks around\` it.
 
 ##### Regular Inline code
