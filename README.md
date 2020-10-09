@@ -41,6 +41,10 @@ The key to Fountain Exponential is that it's based on Fountain and thus specifie
 ### Ergonomics
 Fountain Exponential will extend Fountain, the Markdown variant specific for the screenplay writing domain, in such a way that the excellent readability of Fountain will remain, but add the branching and triggering aspects for games.
 
+In order to handle text in the most ergonomic way text is the primary thing in the language and conditions and variable handling secondary. Meaning that conditions are dotted among the text and code relegated to demarcated blocks and spans. This is the opposite to general programming languages that demarcate the text in string spans and blocks and makes the code primary.
+
+Making the text primary is also done with HTML, as it can have code attributed in the elements of the structure. A HTML document is meant to be viewed as a static whole and has little sense of time. Some parts like CSS declarations such as highlight or screen size and evens like mouseover can be used to define what happens at a certain time, but that is going from one stable situation to another. Screenplay's and game are dynamic and Fountain Exponential has fundamental structures like  Scenes and Acts, that similar to functions in a programming language describe what happens at a certain time.
+
 ### Proof reading
 Dysorthography and dyslexia are rampant among developers, especially if they are writing in a foreign language. Fountain Exponential makes it easier to proof read and spell check the action, description and dialog of the game.
 
@@ -163,6 +167,9 @@ The integrated language functions as an extension of the internal language. It c
 
 #### Code blocks
 It's code blocks are fenced by lines with-three \`\`\` back ticks, with optionally the language after the starting triple back ticks, making the code highlight for the specified language. 
+
+Fountain Exponential can be seen as an inverted programming language, as the text is dotted with code instead of code dotted with text. In order to handle text in the most ergonomic way text, the dialog, action and descriptions, come first, flow of control, the choices and conditions, second and code, handling things like triggers and variable manipulation,  third.
+Modern programming languages like C# or Python have string interpolation to integrate help adapt the text to the code and something similar happens with Fountain Exponential in that code is integrated in the text means, like menu choices and conditions.
 
 Adding code blocks and interpreting them as instructions that should be executed when the story passes that point will make it possible to interact with the other game systems.
 As Markdown is highly linked with Html and CSS it is natural to assume that the code should be JavaScript. This does not need to be the case as the code can be Java, C#, Python or any other language you desire. The choice of language may be influenced by the interpreter you use. All programming languages mentioned before, use a similar style of calling functions and checking conditions. Limiting the code to those things, will make it programming language agnostic and, more importantly, be easier to read.
