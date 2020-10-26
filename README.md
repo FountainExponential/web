@@ -258,6 +258,10 @@ To focus on the main story in the main file it should be possible to relegate th
 
 The references to other files could be defined in the metadata at the top of the Fountain file, but could also be included run time as special inline code imports.
 
+#### Dramatis Personae or Character list
+A stageplay generaly has a Dramatis Personae because every actors plays multiple roles. For a screenplay a Character list is considered bad form, because there shouldn't be so many characters that a list is needed to keep track of them. The characters should be memorable anough to be in the screenplay, although a tiny reminder in the action text can be helpfull. 
+The Character list should be created from the Characters used in the script. A list of possible Characters could be added to the metadata to make it possible to select the character in the editor. Be able to view where a character is used in the text and to jump to that part of the text is helpfull, but is mostly a thing of the editor not the format.
+
 ### Commonmark
 Commonmark is the Markdown standard all Markdown implementers agree on. Fountain is a bit strange, because it does not adhere to the Commonmark standard. The thinking being that Fountain is specific for screenplay writing and things like tables will never be in a screenplay.
 Adding missing Commonmark functionality will make it easier for experienced Markdown users to pick it up.
