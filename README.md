@@ -76,7 +76,45 @@ Describing Shape/Form is generally omitted by screenplay writers in favor of a m
 
 Centering the text around entities would allow for organization of the text similar to what is in computer science called object oriented programming. Although the main story should read as a screenplay, interaction with entities not relevant to the story should be relegated to files holding the elements and interaction specific to that entity. The interactive fiction engine Inform 6 implements the story around entities and Inform 7 puts a logic engine on top of that. However having only entities is a simulation of a world, but that makes telling a story difficult, so Fountain Exponential will have a hybrid approach, starting with the story and having embellishments by entities.
 
-The programming architecture that is supports the idea of roles is that of Data, Context and Interaction (DCI). It supports the tagging of roles by separating interaction from data and context. It defines a business model similar to a domain in Domain Driven Design (DDD), but makes it anemic, in that it only has functionality for it's consistency, but not interaction. The interaction functionality is contained in roles that are put on the entities in the anemic model.  The context is the service or main function that creates the entities and makes them interact with each other.
+The programming architecture that is supports the idea of roles is that of Data, Context and Interaction (DCI). It supports the tagging of roles by separating interaction from data and context. It defines a business model similar to a domain in Domain Driven Design (DDD), but makes it anemic, in that it only has functionality for it's consistency, but not interaction. The interaction functionality is contained in roles that are put on the entities in the anemic model. The context is the service or main function that creates the entities and makes them interact with each other.
+
+### Character persona described with the OCEAN model
+Having a character list in a screenplay is seen as unprofessional as the characters should be memorable, but it's common for a movie to have a cast list at the end. In a large novel with a very large cast of characters, more common in children's books and speculative fiction, a character list at the beginning or end may can be helpful to the reader. In theatre a Dramatis Personae contains a list of the main characters in a play with the actors in the second column. When writing any kind of larger story having a list to track the characters is common, but it's part of the notes of the creator and not of the product. Having such a list either as a mental model or a real list helps with writing, rewriting, adapting the story to notes and proof reading. It would therefor make sense to incorporate a character list into the Fountain Exponential format in a similar way as notes and comments, that are useful when writing the screenplay, but not shown in the product.
+
+Describing the persona of a character can be done in many ways. The mayor ones seem to be Mayer-Briggs Type inventory (MBTI) based on Jungian archetypes, Enneagram based on spirituality, Gallup Cliffort StrengthsFinder based on behavior in the work place and the OCEAN model based on scientific research of personality descriptions. Although Jungian archetypes are important for creative work and spirituality is important for creatives and strengths are important for hero's in a story, a screenplay is about describing characters and the OCEAN model is based on that. Going from a personality description to dialog and action is difficult with any system, but using the closes related one makes it as easy as possible.
+
+The psychological trait theory, also known as the Big Five, five-factor model or OCEAN model is a scientific model based on the factor analysis, a statistical technique, of verbal descriptors of human behavior in personality survey data. It reveals semantic associations: some words used to describe aspects of personality are often applied to the same person. For example, someone described as conscientious is more likely to be described as "always prepared" rather than "messy". These associations suggest five broad dimensions used in common language to describe the human personality and psyche.
+The theory identifies five factors:
+
+* openness to experience (inventive/curious vs. consistent/cautious)
+* conscientiousness (efficient/organized vs. extravagant/careless)
+* extraversion (outgoing/energetic vs. solitary/reserved)
+* agreeableness (friendly/compassionate vs. challenging/callous)
+* neuroticism (sensitive/nervous vs. resilient/confident)
+
+The five factors are abbreviated in the acronyms OCEAN or CANOE. Beneath each proposed global factor, there are a number of correlated and more specific primary factors. For example, extraversion is typically associated with qualities such as gregariousness, assertiveness, excitement-seeking, warmth, activity, and positive emotions.
+
+Each of the Big Five personality traits contains two separate, but correlated, aspects reflecting a level of personality below the broad domains but above the many facet scales that are also part of the Big Five. The aspects are labeled as follows:
+
+* Neuroticism
+  + Volatility 
+  + Withdrawal
+* Extraversion
+  + Enthusiasm 
+  + Assertiveness
+* Openness to Experience
+  + Intellect
+  + Openness
+* Conscientiousness
+  + Industriousness 
+  + Orderliness
+* Agreeableness
+  + Compassion 
+  + Politeness
+
+People who do not exhibit a clear predisposition to a single factor in each dimension above are considered adaptable, moderate and reasonable, yet they can also be perceived as unprincipled, inscrutable and calculating.
+
+Studies indicate that the Big Five traits are not nearly as powerful in predicting and explaining actual behavior as are the more numerous facets or primary traits.
 
 ## Fountain Exponential Vision
 The vision for Fountain Exponential is to make proofreading of a game story as easy as reading a screenplay, while seeing pieces of the context of the story in special block that are easy to ignore, but may give hints to where in the game the text will fit. Having the text be split up in scenes and moments instead of less informative id's, having function calls in the text that have names that describe their intention, Yaml data block that convey data that is meaningful for the story, as well as attributes that alters the display of the elements of the text in predictable ways, will give the reader the context they need to see it the story enfolds properly and the freedom to be creative with the story. The responsibility of a readable story lies with the writer and these blocks of code and data can be done in a badly readable way, just as paragraphs can be written in a badly readable way. We thrust the writer with these tools, as the story should dictate the implementation, although the implementation can have an effect on the story, the writer should take these notes and adapt the story to them, so the story stays true to it's ideas and keeps it's internal consistency in tact.
@@ -87,7 +125,7 @@ Another part of the vision of Fountain Exponential is to make the story of a gam
 
 ## Fountain Exponential Principles
 Fountain Exponential tries to uphold the following principles:
-1. A Fountian screenplay should be usable as a basis for a Fountain Exponential game story, by adding extra scenes for the branching story, ways to branch the story, like choices and links and embellish the story with technical details to interact with the rest of the game.
+1. A Fountain screenplay should be usable as a basis for a Fountain Exponential game story, by adding extra scenes for the branching story, ways to branch the story, like choices and links and embellish the story with technical details to interact with the rest of the game.
 2. The story should be readable. Technical details, although important to developers, but matter little to writers, should detract as little as possible from the story. Therefor it is preferred to group code or data in a block or span, instead of sprinkling them through the text, as the reader can easier skip blocks and spans, if those are not relevant. 
 3. The game engine should make little demand on the story and it's difficulties should be solved in the conversion process to an optimized format for the game.
 4. The game story is an asset just as separate or integrated with the game, as other assets like images and sounds.
@@ -673,5 +711,3 @@ The work of mainly Elizabeth Spelke that human and other living beings have inna
 
 ### Data, Context and Interaction (DCI)
 The work of Trygve Reenskau and James O. Coplien is an inspiration as it takes Object Oriented one step further. By doing so it better matches what happens in the real world or in an imaginary world as in a game or on stage. The idea of entities performing a role in DCI, matches with agents, objects or geography performing a role in core knowledge and characters, props and locations performing a role in a story.
-
-
