@@ -94,6 +94,7 @@ The theory identifies five factors:
 
 The five factors are abbreviated in the acronyms OCEAN or CANOE. Beneath each proposed global factor, there are a number of correlated and more specific primary factors. For example, extraversion is typically associated with qualities such as gregariousness, assertiveness, excitement-seeking, warmth, activity, and positive emotions.
 
+#### Aspects of OCEAN factors
 Each of the Big Five personality traits contains two separate, but correlated, aspects reflecting a level of personality below the broad domains but above the many facet scales that are also part of the Big Five. The aspects are labeled as follows:
 
 * Neuroticism
@@ -115,6 +116,34 @@ Each of the Big Five personality traits contains two separate, but correlated, a
 People who do not exhibit a clear predisposition to a single factor in each dimension above are considered adaptable, moderate and reasonable, yet they can also be perceived as unprincipled, inscrutable and calculating.
 
 Studies indicate that the Big Five traits are not nearly as powerful in predicting and explaining actual behavior as are the more numerous facets or primary traits.
+
+In contrast with Costa and McCrae's admittedly arbitrary decisions for the NEO PI-R facet scales, studies guided by the Lexical Hypothesis root facets in the personality language of laypeople. This approach is meant to test, and possibly enhance, the content validity of the measures used. Using the Five Factor Model, Gerard Saucier and Fritz Ostendorf explored each domain's facet structure through lexical studies. Using English and German participants and materials, they found a total of 18 facets, or "subcomponents," of the Big Five. These are:
+
+* Extraversion
+  + Sociability 
+  + Unrestraint
+  + Assertiveness
+  + Activity-Adventurousness
+* Openness to Experience
+  + Intellect
+  + Imagination-Creativity
+  + Perceptiveness
+* Conscientiousness
+  + Orderliness 
+  + Decisiveness-Consistency
+  + Reliability
+  + Industriousness
+* Agreeableness
+  + Warmth-Affection 
+  + Gentleness
+  + Generosity
+  + Modesty-Humility
+* Neuroticism
+  + Irritability 
+  + Insecurity
+  + Emotionality
+
+The lexical hypothesis is generally defined by two postulates. The first states that those personality characteristics that are important to a group of people will eventually become a part of that group's language. The second follows from the first, stating that more important personality characteristics are more likely to be encoded into language as a single word. The lexical hypothesis is a major foundation of the Big Five personality traits and has been used to study the structure of personality traits in a number of cultural and linguistic settings. Because it is linguistics based it would be a good match for a language that deals with describing personality.
 
 ## Fountain Exponential Vision
 The vision for Fountain Exponential is to make proofreading of a game story as easy as reading a screenplay, while seeing pieces of the context of the story in special block that are easy to ignore, but may give hints to where in the game the text will fit. Having the text be split up in scenes and moments instead of less informative id's, having function calls in the text that have names that describe their intention, Yaml data block that convey data that is meaningful for the story, as well as attributes that alters the display of the elements of the text in predictable ways, will give the reader the context they need to see it the story enfolds properly and the freedom to be creative with the story. The responsibility of a readable story lies with the writer and these blocks of code and data can be done in a badly readable way, just as paragraphs can be written in a badly readable way. We thrust the writer with these tools, as the story should dictate the implementation, although the implementation can have an effect on the story, the writer should take these notes and adapt the story to them, so the story stays true to it's ideas and keeps it's internal consistency in tact.
@@ -301,8 +330,7 @@ A stageplay generaly has a Dramatis Personae because every actors plays multiple
 The Character list should be created from the Characters used in the script. A list of possible Characters could be added to the metadata to make it possible to select the character in the editor. Be able to view where a character is used in the text and to jump to that part of the text is helpfull, but is mostly a thing of the editor not the format.
 
 ### Commonmark
-Commonmark is the Markdown standard all Markdown implementers agree on. Fountain is a bit strange, because it does not adhere to the Commonmark standard. The thinking being that Fountain is specific for screenplay writing and things like tables will never be in a screenplay.
-Adding missing Commonmark functionality will make it easier for experienced Markdown users to pick it up.
+Commonmark is the Markdown standard all Markdown implementers agree on. Fountain is a bit strange, because it does not adhere to the Commonmark standard. The thinking being that Fountain is specific for screenplay writing and things like tables will never be in a normal screenplay. Adding missing Commonmark functionality will make it easier for experienced Markdown users to pick it up.
 
 #### Links for interactive Diverts
 Adding links will enable branching stories like Gamebooks. Following links you can move from text to text, allowing you to create your own story. Links are different from deviations or detours in that links have to be clicked by the user to make the story continue and the other ones do not.
