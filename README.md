@@ -372,11 +372,22 @@ Markdown inline \`code\` has \`back-ticks around\` it.
 
 ##### Regular Inline code
 Inline code is a span of instructions that are executed when the story passes that point, but change nothing of the text. It is simply a way of signaling of working with the other game systems. 
+```
+### Arriving in town
+@Player
+What a lovely little town. `townGoesOnFullAlert();` Everything is as I expect it to be.
+```
+Alternatively calling code behind without showing the returned result can be done by using a & sign. Using the & can only be done for a value or function, as for an expression the end can not be determined.
+```
+### Arriving in town
+@Player
+What a lovely little town. &townGoesOnFullAlert() I think we can make it smaller.
+```
 
 ##### Injected Values
 Inline code is a span of instructions that are executed when the story passes that point, but the value the code produces is injected into the text.  In this way the text can vary based upon the situation or show the stats of the other game systems.
 
-Inline code injecting a value in the text is made by containing the code with backticks `, but starting with an equal sign. Technically it's an expression being evaluated and converted into a string.
+Inline code injecting a value in the text is made by containing the code with backticks `, but starting with an equal = sign. Technically it's an expression being evaluated and converted into a string.
 And example of showing different text depending on the situation:
 ```
 ### The meeting
@@ -384,7 +395,7 @@ And example of showing different text depending on the situation:
 gender: female
 ----
 @Player
-Greeting `= (gender == female)? "Madam" : "Sir";`
+Greetings `= (gender == female)? "Madam" : "Sir";`
 ```
 An example of showing stats 
 ```
@@ -392,6 +403,27 @@ An example of showing stats
 @Player
 I got  `= 3 + 4;` in one go.
 ```
+Alternatively calling code behind and injecting the return value can be done by using a $ sign. Using the $ can only be done for a value or function, as for an expression the end can not be determined.
+```
+### The meeting
+----
+name: "Lady Vagabond" 
+----
+@Player
+Greetings $name
+```
+An example of calling a function 
+~~~
+```+ 
+function amountRetrieved()
+{
+	return 3 + 4;
+}
+```
+### The brag
+@Player
+I got  $amountRetrieved() in one go.
+~~~
 
 #### Import of files
 Importing another file at run time is done by special inline code fenced with back ticks but starting with a percentage sign %. This is a mixture of T4 template and Typescript styles of adding metadata.
