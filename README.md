@@ -425,6 +425,81 @@ function amountRetrieved()
 I got  $amountRetrieved() in one go.
 ~~~
 
+#### Section parameters
+A section can function as a method in a programming language. It can be made more generic if the text in the section can refer to parameters given to the section from outside the section.
+The parameters that can be given to a section can be defined in between parentheses in the definition of the section.
+```
+#Act 1
+You approach the man.
+
+=> Meet the infamous(@blackKnight)
+
+=> Where the fight takes place ( "Ardania" ) 
+
+@blackKnight
+Forget it, I'm out off here!
+
+### Meet the infamous ( @person ) 
+@Player
+So we meet at last $person.name
+
+### Where the fight takes place ( landname ) 
+@Player
+The lands of $landname will be witness to our joust.
+```
+
+#### Group sections into an Entity
+A prototype is similar to a namespace or class in that it defines sections inside of it.
+```
+#Act 1
+You approach the soldier.
+
+=> %Soldier.Salut
+
+%Soldier {
+### Salut
+The soldiers arm moves to his head and he stands at attention.
+
+@Soldier
+Sir!
+
+}
+
+```
+##### Create a local copy of a Group
+A Group of functionality can be made into a separate Entity, meaning that it's data will be split from the definition or original and go it's separate way. This can be done by Init(), Copy() or Clone().
+
+When Init() is used the original definition is used to create a separate fresh unchanged Entity.
+When Copy() is used the current state of the Entity is used to create a shallow copy of the Entity. Any other Entity the copied Entity refers to is not copied and is thus not a separate Entity.
+When Clone() is used the current state of the Entity is used to create a deep copy of the Entity. Any other Entity the copied Entity refers to is also copied into a separate Entity. Game elements outside of the game world like the render engine are not subject to the deep copy.
+
+The Init, Copy and Clone can be defined as sections, but can also be left up to the default implementation. 
+
+#### Tables for quarriable data 
+Frameworks that hold boilerplate response that are not part of the story but add to the believability of the game, for instance NPC in a city, should be able to be created and used in Fountain Exponential. 
+The table definitions of Markdown can be reused here, in a similar fashion as the list is reused for the menu structure.
+```
+### Greet the NPC
+::: {id=greetingsTable}
+
+ID|Salutation|Response
+--------------|---------------|---------------
+upperClass|Greetings, sir| Greetings to you too
+lowerClass|Hi! | Hello
+Friend|=> Greet a friend | => A friend responds to a greeting
+
+::: 
+
+#### Greet a friend
+@Player
+Hi, how are you?
+You look great.
+
+#### A friend responds to a greeting
+@NPC
+I'm fine thanks.
+Nice of you to notice.
+```
 #### Import of files
 Importing another file at run time is done by special inline code fenced with back ticks but starting with a percentage sign %. This is a mixture of T4 template and Typescript styles of adding metadata.
 
