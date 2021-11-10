@@ -207,7 +207,7 @@ Synopses | Start line with: `=` | invisible text intended as writing aid for met
 Notes | `[[`**Note Text**`]]` | invisible text intended for external stakeholders
 Boneyard | `/*`**Boneyard Text**`*/` | invisible text intended for writer
 
-Styling of sceenplay text
+Styling of screenplay text
 Fountain Element | Example or Definition | Explanation
 --------------|---------------|---------------
 Centered Text | `>`**Centered Text**`<` | -
@@ -257,8 +257,8 @@ Fountain Exponential Element | Example
 --------------|---------------
 "Moment" Section | `####` at start of the line defines a **Moment** section
 "Slice" Section | `#####` at start of the line defines a **Slice** section
-"divert seperate" | `->`  single arrow 
-"detour seperate" | `=>` double arrow
+"divert separate" | `->`  single arrow 
+"detour separate" | `=>` double arrow
 "divert integrated" | `-\|` single stump
 "detour integrated" | `=\|` double stump
 Image | Include an image for storyboarding 
@@ -268,9 +268,9 @@ Code span | Code integrated as part of the text
 Code block | A block of multiple lines of code
 Yaml block | Data in YAML format specific to the section 
 Attribute span | Attributes put on elements similar to CSS
-Conditionals | the if else statement controling flow of the text
+Conditionals | the if else statement controlling flow of the text
 Arrangement | a generator that yields a text from a list every time when called 
-Container | A block dentoting an area with special rules.
+Container | A block denoting an area with special rules.
 Menu | A list wrapped in a Container
 
 ### Fountain
@@ -326,8 +326,8 @@ To focus on the main story in the main file it should be possible to relegate th
 The references to other files could be defined in the metadata at the top of the Fountain file, but could also be included run time as special inline code imports.
 
 #### Dramatis Personae or Character list
-A stageplay generaly has a Dramatis Personae because every actors plays multiple roles. For a screenplay a Character list is considered bad form, because there shouldn't be so many characters that a list is needed to keep track of them. The characters should be memorable anough to be in the screenplay, although a tiny reminder in the action text can be helpfull. 
-The Character list should be created from the Characters used in the script. A list of possible Characters could be added to the metadata to make it possible to select the character in the editor. Be able to view where a character is used in the text and to jump to that part of the text is helpfull, but is mostly a thing of the editor not the format.
+A stageplay generally has a Dramatis Personae because every actors plays multiple roles. For a screenplay a Character list is considered bad form, because there shouldn't be so many characters that a list is needed to keep track of them. The characters should be memorable enough to be in the screenplay, although a tiny reminder in the action text can be helpful. 
+The Character list should be created from the Characters used in the script. A list of possible Characters could be added to the metadata to make it possible to select the character in the editor. Be able to view where a character is used in the text and to jump to that part of the text is helpful, but is mostly a thing of the editor not the format.
 
 ### Commonmark
 Commonmark is the Markdown standard all Markdown implementers agree on. Fountain is a bit strange, because it does not adhere to the Commonmark standard. The thinking being that Fountain is specific for screenplay writing and things like tables will never be in a normal screenplay. Adding missing Commonmark functionality will make it easier for experienced Markdown users to pick it up.
