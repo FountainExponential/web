@@ -371,7 +371,7 @@ Woouha!
 Markdown inline \`code\` has \`back-ticks around\` it.
 
 ##### Regular Inline code
-Inline code is a span of instructions that are executed when the story passes that point, but change nothing of the text. It is simply a way of signaling of working with the other game systems. 
+Inline code is a span of instructions that are executed when the story passes that point, but change nothing of the text. It is simply a way of signaling or working with the other game systems. 
 ```
 ### Arriving in town
 @Player
@@ -385,7 +385,7 @@ What a lovely little town. &townGoesOnFullAlert() I think we can make it smaller
 ```
 
 ##### Injected Values
-Inline code is a span of instructions that are executed when the story passes that point, but the value the code produces is injected into the text.  In this way the text can vary based upon the situation or show the stats of the other game systems.
+Injected values are span of instructions that are executed when the story passes that point, but the value the code produces is injected into the text.  In this way the text can vary based upon the situation or show the stats of the other game systems.
 
 Inline code injecting a value in the text is made by containing the code with backticks `, but starting with an equal = sign. Technically it's an expression being evaluated and converted into a string.
 And example of showing different text depending on the situation:
@@ -425,6 +425,28 @@ function amountRetrieved()
 I got  $amountRetrieved() in one go.
 ~~~
 
+##### Trigger Values
+Trigger values are a part of the text given to the other game systems when the story passes that point. It functions as an ID a way of signaling or working with the other game systems. This is the most natural way of signaling the other game systems, as natural text can be used as an identifying text. The identifying text could be used in multiple places serving like a function call.
+
+A trigger value is created by prepending the text that functions as the ID with an % sign.
+```
+### Arriving in town
+@Player
+What a lovely little town. %Smiling face% Everything is as it should be. 
+```
+When the % is not ended with another % the rest of the line is assumed to belong to the ID.
+```
+### Arriving in town
+@Player
+What a lovely little town. Everything is as I expect it to be. %Smiling face
+```
+When the % is followed by a = the id is also put in the text. This allows for a more natural flow of the text.
+```
+### Arriving in town
+@Player
+One snap of my fingers and %=Snap% it's gone.
+
+
 #### Section parameters
 A section can function as a method in a programming language. It can be made more generic if the text in the section can refer to parameters given to the section from outside the section.
 The parameters that can be given to a section can be defined in between parentheses in the definition of the section.
@@ -454,9 +476,9 @@ A prototype is similar to a namespace or class in that it defines sections insid
 #Act 1
 You approach the soldier.
 
-=> %Soldier.Salut
+=> &Soldier.Salut
 
-%Soldier {
+&Soldier {
 ### Salut
 The soldiers arm moves to his head and he stands at attention.
 
@@ -840,6 +862,9 @@ https://commonmark.org/
 
 ### Markdown extensions
 There are many Markdown Extensions to be found. For Fountain Exponential the ones that inspired the syntax for Yaml Front Matter, Attributes and Containers where essential for creating a coherent whole. The ones that come to mind are GitHub flavored Markdown, Markdig, Kramdoc, Pandoc, Jekyll, Hugo, Markdown-r, VuePress.
+
+### Specflow Gherkin
+The Gherking language is used to describe test cases in Specflow in a BDD style. The Given, Then, When syntax is quite limited, but the idea of using sentences as ID's on another language is quite powerfull. The Trigger Values follow the same concept.
 
 ### Core Knowledge
 The work of mainly Elizabeth Spelke that human and other living beings have innate mental abilities is inspiration for having a story format that supports that.
