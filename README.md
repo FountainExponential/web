@@ -445,7 +445,7 @@ When the % is followed by a = the id is also put in the text. This allows for a 
 ### Arriving in town
 @Player
 One snap of my fingers and %=Snap% it's gone.
-
+```
 
 #### Section parameters
 A section can function as a method in a programming language. It can be made more generic if the text in the section can refer to parameters given to the section from outside the section.
