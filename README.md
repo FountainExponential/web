@@ -255,12 +255,14 @@ CUT TO:
 ### Fountain Syntax extensions by Fountain Exponential
 Fountain Exponential Element | Example
 --------------|---------------
-"Moment" Section | `####` at start of the line defines a **Moment** section
-"Slice" Section | `#####` at start of the line defines a **Slice** section
+"Moment" Section | `####` at the start of the line defines a **Moment** section
+"Slice" Section | `#####` at the start of the line defines a **Slice** section
 "divert separate" | `->`  single arrow 
 "detour separate" | `=>` double arrow
 "divert integrated" | `-\|` single stump
 "detour integrated" | `=\|` double stump
+"Searched Label" | `#~` after a diver or detour defines a **Searched Label** going to a section while ignoring the section level
+Continue | \|\| at the start of a line defines the continue from this section to next section. Equal to a divert seperate and the label of the next section.
 Image | Include an image for storyboarding 
 Link | A link can be used for outside reference or anchors in the text
 List | Visible list of elements interpreted as a menu when contained in a Container.
@@ -377,11 +379,14 @@ Inline code is a span of instructions that are executed when the story passes th
 @Player
 What a lovely little town. `townGoesOnFullAlert();` Everything is as I expect it to be.
 ```
-Alternatively calling code behind without showing the returned result can be done by using a & sign. Using the & can only be done for a value or function, as for an expression the end can not be determined.
+Alternatively calling code behind without showing the returned result can be done by using a & sign. Markdown color codeing will not work for this.
+Using the & in the middle of a sentence can be done for a value or function, as the end of the expression can then be determined.
+Having the & at the start makes the whole line being interpreted as instructions.
 ```
 ### Arriving in town
 @Player
 What a lovely little town. &townGoesOnFullAlert() I think we can make it smaller.
+&player.drawnSword = player.hasSword && player.goodSwordArm 
 ```
 
 ##### Injected Values
@@ -471,14 +476,46 @@ The lands of $landname will be witness to our joust.
 ```
 
 #### Group sections into an Entity
-A prototype is similar to a namespace or class in that it defines sections inside of it.
+A group or prototype is similar to a object, class or namespace in that it defines sections inside of it.
+It can be one of the following:
+Group type | Description
+--------------|---------------
+Object | An Object is something that exists outside of the game like part of the game engine. 
+Entity | An Enity is something that exist inside of the game world similar to an object.
+
+Subgroups of Objects and Entities can be removed or altered seperate from the them.
+Group type | Description
+--------------|---------------
+Attribute | An attributed property of an Entity like it's color, smell or status.
+Action | An action is something that can be performed on the Entity.
+Interaction | An interactivety is something that can be performed by the Entity on another Entity.
+Activety | An activety of the Entity that can be started and stopped to perform an Action periodicaly. 
+Interactivety | An interactivety of the action that can be started and stopped to perform an Interaction periodicaley.
+
+Having specific derivatives of Entity can make them have them the correct default representation and behavior in the game.
+Specific derevatives bases on Cinematograpy and Core Knowledge are defined as:
+Group type | Description
+--------------|---------------
+Game | The Object that represent the game itself.
+Agent | An Entity with Agency in the game.
+Player | A Agent that represents a Player in the game.
+Character | A Character represents an Agent that matters to the story of the game. 
+Supernumerary | A Character represents an Agent that matters little to the story of the game.
+Animal | An Animal is an Agent that generaly functions as a backdrop in the game.
+Location | A Location represents a Geographical Entity like a Room, Castle or Forest. Possibly having Attributes like Scenery, Terrain, Decor, Fictures, Ornaments etc.
+Prop | A Prop represents an Physical Entity like an Item that matters to the story of the game.
+Costume | A Costume represents an Physical Entity is worn by a Character or Supernumerary. It could also be implemented as an Attribute.
+Furniture | A Furniture represents an Physical Entity that generaly functions as a backdrop in the game.
+Plant | A Plant represents an Physical Entity that generaly functions as a backdrop in the game.
+Fictitious | A Fictitious Entity represents an immaterial or artificial Entity like a Company, Nation or Team. Hierachies end relations are described with Fictitious Entities.
+
 ```
 #Act 1
 You approach the soldier.
 
 => &Soldier.Salut
 
-&Soldier {
+&Soldier = create Character(Soldier) {
 ### Salut
 The soldiers arm moves to his head and he stands at attention.
 
@@ -489,13 +526,13 @@ Sir!
 
 ```
 ##### Create a local copy of a Group
-A Group of functionality can be made into a separate Entity, meaning that it's data will be split from the definition or original and go it's separate way. This can be done by Init(), Copy() or Clone().
+A Group of functionality can be made into a separate Entity, meaning that it's data will be split from the definition or original and go it's separate way. This can be done by Create(), Copy() or Clone().
 
-When Init() is used the original definition is used to create a separate fresh unchanged Entity.
+When Create() is used the original definition is used to create a separate fresh unchanged Entity.
 When Copy() is used the current state of the Entity is used to create a shallow copy of the Entity. Any other Entity the copied Entity refers to is not copied and is thus not a separate Entity.
 When Clone() is used the current state of the Entity is used to create a deep copy of the Entity. Any other Entity the copied Entity refers to is also copied into a separate Entity. Game elements outside of the game world like the render engine are not subject to the deep copy.
 
-The Init, Copy and Clone can be defined as sections, but can also be left up to the default implementation. 
+The Create, Copy and Clone can be defined as sections, but can also be left up to the default implementation. 
 
 #### Tables for quarriable data 
 Frameworks that hold boilerplate response that are not part of the story but add to the believability of the game, for instance NPC in a city, should be able to be created and used in Fountain Exponential. 
@@ -830,6 +867,25 @@ What shall we talk about?
 :::
 ```
 
+## Implementation
+
+### Writing a compiler
+The compiler could be writen like the Go compiler explained in "Lexical Scanning in Go - Rob Pike"
+
+### Compiling to an Intermediate Language Format
+It should be possible to compile Fountain Exponential to an intermediate data format. Interactive Fiction writers would feel their work is more protected. It's also more effictient to run in a browser or game engine.
+
+### Intermediate Language Format definition
+The Intermediate Language Format could be in XML, JSON, YAML or a proprietery format. 
+A proprietery format has the adventage that it can be very compact and performant, but speed is generaly not an issue and it's difficult to have multipole implementation for such a forma, because they must all be made by the holder of the format.
+Generic formats like XML, YAML and JSON are prefered, because it's easy to get them running on any platform.
+XML has the adventage that it's readable and it's possible to fix errors by hand, but it's too verbose.
+YAML has the advantage that it's compact and easy to read when it's small, but when it gets big it gets difficult to read and error prone.
+JSON has the advantage that it's compact and supported in the brower. It's may be difficult to read especialy compressed, but that is actually an advantage.
+JSON seems like the prefered choise for an Intermediate Language Format.
+
+This would be similar to Interactive Fiction Mark Up Language (IFML), although that is writen in XML and is going nowhere.
+
 ## Acknowledgements
 I would like to acknowledge the foundational work that Fountain Exponential builds upon.
 
@@ -863,11 +919,25 @@ https://commonmark.org/
 ### Markdown extensions
 There are many Markdown Extensions to be found. For Fountain Exponential the ones that inspired the syntax for Yaml Front Matter, Attributes and Containers where essential for creating a coherent whole. The ones that come to mind are GitHub flavored Markdown, Markdig, Kramdoc, Pandoc, Jekyll, Hugo, Markdown-r, VuePress.
 
+### Interactive Fiction Mark Up Language (IFML)
+https://sourceforge.net/projects/ifml/
+
+http://ifml.sourceforge.net/#:~:text=Interactive%20Fiction%20Markup%20Language%20%28IFML%29%20is%20an%20XML,scenes%2C%20dialogs%2C%20monologs%20and%20create%20characters%20and%20props.
+
+https://github.com/IFML2/ifml2
+
+### Go Compiler
+Lexical Scanning in Go - Rob Pike
+https://www.youtube.com/watch?v=HxaD_trXwRE&list=PL3NQHgGj2vtsJkK6ZyTzogNUTqe4nFSWd
+
 ### Specflow Gherkin
 The Gherking language is used to describe test cases in Specflow in a BDD style. The Given, Then, When syntax is quite limited, but the idea of using sentences as ID's on another language is quite powerfull. The Trigger Values follow the same concept.
 
 ### Core Knowledge
 The work of mainly Elizabeth Spelke that human and other living beings have innate mental abilities is inspiration for having a story format that supports that.
+
+Lecture in Science: From Core Concepts to New Systems of Knowledge by Dr. Elizabeth Spelke
+https://www.youtube.com/watch?v=Ojz-kgOEij8
 
 ### Data, Context and Interaction (DCI)
 The work of Trygve Reenskau and James O. Coplien is an inspiration as it takes Object Oriented one step further. By doing so it better matches what happens in the real world or in an imaginary world as in a game or on stage. The idea of entities performing a role in DCI, matches with agents, objects or geography performing a role in core knowledge and characters, props and locations performing a role in a story.
