@@ -791,6 +791,8 @@ Ask for Pablo. Say Tony send ya.
 ```
 
 #### Attribute blocks
+Attributes in Fountain Exponential are signals send to the element that has the attribute attached to it first. If it doesn't get handled by that element is gets bubled up by sending it up the element tree to find an element that can handle it and possibly distribute it down again to another element. 
+
 Attributes in Markdown are started by an open accolade { and end with a closing accolade }. The opening accolade is optionaly followed by a colon :, but this is a residue of Inline Attribute Lists (ISL), that does not match well with the hash # of id and dot . of class attributes. When using Markdig or Kramdown they translate to attributes on an element in HTML.
 
 Attributes can be attached to that commes just before it:
