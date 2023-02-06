@@ -793,9 +793,9 @@ Ask for Pablo. Say Tony send ya.
 #### Attribute blocks
 Attributes in Markdown are started by an open accolade { and end with a closing accolade }. The opening accolade is optionaly followed by a colon :, but this is a residue of Inline Attribute Lists (ISL), that does not match well with the hash # of id and dot . of class attributes. When using Markdig or Kramdown they translate to attributes on an element in HTML.
 
-Attributes can be attached to:
+Attributes can be attached to that commes just before it:
 - The previous inline element if the previous element is not a literal
-- The next block if the current block is a paragraph and the attributes is the only inline present in the paragraph
+- The previous block if the current block is a paragraph and the attributes is the only inline present in the paragraph
 - Or the current block
 - On a separated part of the text
 
@@ -812,6 +812,22 @@ This text has class {.haughty}
 ```
 This text has data tagged to it {commandId=tag}
 ```
+
+- A list of values that will be used by the engine to determin where a signal must be send and combined with it's payload.
+In the following example, while John speaks his dialog, a showVictory signal is send to the Entity displaying John combined with the "scream and shout" state.
+At the same time, a showVictory signal is send to the Entity displaying the background, combined with the trumpets state.
+```
+John
+I'm the greatest!! {showVictory(John, "scream and shout"), showVictory(background, trumpets)}
+```
+an alternative might be to attach to the dialog element, so the John entity will recieve a showVictory signal with "scream and shout" payload witch it does know to handle, 
+but also a showVictory signal with the background and trumpets wich it has to pass on and eventualy gets to the background with the trumpets payload. 
+```
+John
+{showVictory("scream and shout"), showVictory(background, trumpets)}
+I'm the greatest!! 
+```
+The naming rule for the signals is that they are verbs or actions, while the classes are descriptive states.
 - An empty attribute block {} or {::} can be used to separate an element from the rest of the text. For example:
 ```
 The {}readability{.emphasis} focused way.
@@ -836,6 +852,7 @@ A continuation designated with a minus- is a persistent menu item that escapes t
 
 Generally the menu is ordered by consumable options, then persistent options and lastly the continuation. The consumable options are first because they are special and more interesting then the regular persistent options. The continuation is last because generally the player arrived at the menu wanting to interact with it and the last thing to do is leave.
 
+
 And example of a simple menu structure, where the optional display class is added:
 ```
 ::: {.navigationMenu}
@@ -845,6 +862,7 @@ Where to go next?
 + Leave town. -> On the road again 
 :::
 ```
+Menu structures can be hierachical, but as a rule menu's should not be deeper then 3 layers.
 And example of a hierarchical and thus more complex menu structure, although the indenting does help:
 ```
 ::: {.conversationMenu}
@@ -941,3 +959,6 @@ https://www.youtube.com/watch?v=Ojz-kgOEij8
 
 ### Data, Context and Interaction (DCI)
 The work of Trygve Reenskau and James O. Coplien is an inspiration as it takes Object Oriented one step further. By doing so it better matches what happens in the real world or in an imaginary world as in a game or on stage. The idea of entities performing a role in DCI, matches with agents, objects or geography performing a role in core knowledge and characters, props and locations performing a role in a story.
+
+### Deep Nesting
+The rule to not nest the menu's deeper then 3 layers commes from the programming rule to not nest if statements deeper then 3 layers. Excessive indentation, or "nesting," has been pilloried in computing literature for decades and is still one of the chief culprits in confusing code. Studies by Noam Chomsky and Gerald Weinberg suggest that few people can understand more than three levels of nested ifs (Yourdon 1986a), and many researchers recommend avoiding nesting to more than three or four levels (Myers 1976, Marca 1981, and Ledgard and Tauer 1987a). 
