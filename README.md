@@ -791,11 +791,13 @@ Ask for Pablo. Say Tony send ya.
 ```
 
 #### Attribute blocks
-Attributes in Fountain Exponential are signals send to the element that has the attribute attached to it first. If it doesn't get handled by that element is gets bubled up by sending it up the element tree to find an element that can handle it and possibly distribute it down again to another element. 
+Attributes in Fountain Exponential are similar to the attributes in HTML. They are nodes in the Game Object Model (GOM) that is being hosted by the Engine Object Model (EOM). The EOM is not specified and can be implemented in multiple ways. The GOM is standardized and holds the elements of the text as wel as Entities in the game world. 
+
+Attributes can alter the text, but also an Entity in the game. Therfor the attributes should not collide in meaning. For instance setting the color of the text should be done by {}sometext{style="text-color:blue"} while styling for instance the GUN in the game would be done by GUN{style="weapon-color:blue"}
 
 Attributes in Markdown are started by an open accolade { and end with a closing accolade }. The opening accolade is optionaly followed by a colon :, but this is a residue of Inline Attribute Lists (ISL), that does not match well with the hash # of id and dot . of class attributes. When using Markdig or Kramdown they translate to attributes on an element in HTML.
 
-Attributes can be attached to that commes just before it:
+Attributes are attached to the element that commes just before it:
 - The previous inline element if the previous element is not a literal
 - The previous block if the current block is a paragraph and the attributes is the only inline present in the paragraph
 - Or the current block
@@ -804,37 +806,34 @@ Attributes can be attached to that commes just before it:
 They can be of 4 kinds:
 - An id element, starting by # that will be used to set the id property of the HTML element
 ```
-This text is identified {#theTextId}
+This text is identified { id=theTextId}
 ```
 - A class element, starting by . that will be appended to the CSS class property of the HTML element
 ```
-This text has class {.haughty}
+This text has class { class=haughty}
+This text has has multiple influences { class="jazz highlight"}
 ```
-- A name=value or name="value" that will be appended as an attribute of the HTML element
+- A style attribute with name:value pairs similar to inline CSS describing the element or entity
 ```
-This text has data tagged to it {commandId=tag}
+This text is displayed in blue {style="color:blue;font-size:9pt"}
+```
+- The style attribute can also change the display of locations, characters or props
+```
+EXT. BRICK'S PATIO - DAY 
+{style="scenery:cloudy;decor:overgrown"}
+
+@Brick
+{style="pose:holdingBinoculars;expression:grim"}
+It doesn't look good.
+
+!Brick takes his {} GUN {type="revolver" style="look:worn;" onAction="blam"} and waves it around.
 ```
 
-- A list of values that will be used by the engine to determin where a signal must be send and combined with it's payload.
-In the following example, while John speaks his dialog, a showVictory signal is send to the Entity displaying John combined with the "scream and shout" state.
-At the same time, a showVictory signal is send to the Entity displaying the background, combined with the trumpets state.
-```
-John
-I'm the greatest!! {showVictory(John, "scream and shout"), showVictory(background, trumpets)}
-```
-an alternative might be to attach to the dialog element, so the John entity will recieve a showVictory signal with "scream and shout" payload witch it does know to handle, 
-but also a showVictory signal with the background and trumpets wich it has to pass on and eventualy gets to the background with the trumpets payload. 
-```
-John
-{showVictory("scream and shout"), showVictory(background, trumpets)}
-I'm the greatest!! 
-```
-The naming rule for the signals is that they are verbs or actions, while the classes are descriptive states.
 - An empty attribute block {} or {::} can be used to separate an element from the rest of the text. For example:
 ```
-The {}readability{.emphasis} focused way.
+The {}readability{class=emphasis} focused way.
 or
-Ths {::}programming{animation=woosh display=blink hover=haha} focused way.
+Ths {::}programming{style="animation:blink;hover:haha"} focused way.
 ```
 
 Adding attribute blocks that describe how an element should be displayed makes it possible to style the text differently depending on the situation or add extra data for the interpreting game. For example, a command line text parser could used data attributed to choices to determine where the flow of the game should go.
