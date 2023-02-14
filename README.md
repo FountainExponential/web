@@ -758,7 +758,7 @@ cokecans: 0
 ---
 @Shopkeeper
 Hello what will it be?
-::: {.shopMenu}
+::: {style=shopMenu}
 - A can of coke
   @Player
   I'll have a can of coke.
@@ -856,7 +856,7 @@ Generally the menu is ordered by consumable options, then persistent options and
 
 And example of a simple menu structure, where the optional display class is added:
 ```
-::: {.navigationMenu}
+::: {style=navigationMenu}
 Where to go next?
 - Visit the shops. -> Shopping scene
 * Visit the mayor. -> A talk with the Mayor
@@ -866,7 +866,7 @@ Where to go next?
 Menu structures can be hierachical, but as a rule menu's should not be deeper then 3 layers.
 And example of a hierarchical and thus more complex menu structure, although the indenting does help:
 ```
-::: {.conversationMenu}
+::: {style=conversationMenu}
 What shall we talk about?
 - Talk about shopping?
   @Player
