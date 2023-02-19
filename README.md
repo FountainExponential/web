@@ -886,6 +886,22 @@ What shall we talk about?
 :::
 ```
 
+#### Game Entity Attribute Model (GEAM)
+The Game Entity Attribute Model (GEAM) is the standard set of attributes the entities in Fountain Exponential, like Characters, Props and Locations should have. These attributes can set properties of the text displayed, but also change the display of the Entities in the game.
+
+The GEAM is inspired by the Document Object Model (DOM) of HTML enabling designers to style webpages independantly of the browser implementation. An "Object models" has to related but different meanings (as mentioned by Jason Gregory):
+* Properties/architecture of a particular object-oriented programming language (e.g. C++, Java, Python, …) used to manage code.
+* Collection of objects/classes with which programs can be built or problems can be solved in scripting the state of elements and their display.
+
+The term “game object model” really refers to two distinct object models:
+* Tool-time, defining the content of the game world and their properties, including their behavior.
+* Run-time, optimized for speed, visuals and gameplay and therfore less dynamic as tools.
+
+Fountain Exponential, just like the screenplay format it is based on, is a tool used to implement a solution. A screenplay is used for shooting a film and Fountain Exponential is intended to be used to create a game with. GEAM is therefor aimed at tool time dynamics and generalization instead of optimized for running in a game or supporting features of a specific game engine.
+
+GEAM tries to support the Core Knowledge model by implementing the attributes of Entities that designers and developers will expect.
+
+
 ## Implementation
 
 ### Writing a compiler
@@ -963,3 +979,12 @@ The work of Trygve Reenskau and James O. Coplien is an inspiration as it takes O
 
 ### Deep Nesting
 The rule to not nest the menu's deeper then 3 layers commes from the programming rule to not nest if statements deeper then 3 layers. Excessive indentation, or "nesting," has been pilloried in computing literature for decades and is still one of the chief culprits in confusing code. Studies by Noam Chomsky and Gerald Weinberg suggest that few people can understand more than three levels of nested ifs (Yourdon 1986a), and many researchers recommend avoiding nesting to more than three or four levels (Myers 1976, Marca 1981, and Ledgard and Tauer 1987a). 
+
+### Game object models
+Jason Gregory presentation starts with a high level explanation of the obejct models used in game development, then dives into the different implementations. As  Fountain Exponential is intended as a standard decoupled from the implementation those are less relevant, but provide an insight in what an implementation might do.
+
+GAME OBJECT MODELS and Scripting Jason Gregory Naughty Dog, Inc.
+https://www.gameenginebook.com/resources/GEA2_GameObjectSystems.pdf
+
+Game object models - Game Engine Architecture
+https://www.slideshare.net/ShawnPresser/game-object-models-game-engine-architecture
