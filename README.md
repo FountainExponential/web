@@ -430,10 +430,17 @@ function amountRetrieved()
 I got  $amountRetrieved() in one go.
 ~~~
 
-##### Trigger Values
-Trigger values are a part of the text given to the other game systems when the story passes that point. It functions as an ID a way of signaling or working with the other game systems. This is the most natural way of signaling the other game systems, as natural text can be used as an identifying text. The identifying text could be used in multiple places serving like a function call.
+##### Integrated Common Code Language (ICCL)
+The Integrated Common Code Language (ICCL) is the programming integrated with Fountain Exponential. It is intended as a bare bones inplementation to control the story. Fountain Exponential code blocks can be used with multiple language like C/C++, C#, Java and Javascript, because it's primary consern is the text in the game. However an integrated language is needed when writing in an engine independent way.
 
-A trigger value is created by prepending the text that functions as the ID with an % sign.
+###### Overriding ICCL
+The ICCL can be overriden by blocks in a specific language by setting the override attribute to the id of the block with the specific language code.
+The default language of Fountain Exponential is ICCL, but can be set in the front matter of the page to the specific language you want. For instance when setting the default language to C# code blocks are assumed to contain C#, so block that contain ICCL must then be attributes as ICCL.
+
+##### Selection Trigger Values
+Selection trigger values are a part of the text given to the other game systems when the story passes that point. It functions as an ID a way of signaling or working with the other game systems. This is the most natural way of signaling the other game systems, as natural text can be used as an identifying text. The identifying text could be used in multiple places serving like a function call.
+
+A selection trigger value is created by prepending the text that functions as the ID with an % sign.
 ```
 ### Arriving in town
 @Player
@@ -450,6 +457,13 @@ When the % is followed by a = the id is also put in the text. This allows for a 
 ### Arriving in town
 @Player
 One snap of my fingers and %=Snap% it's gone.
+```
+
+Alternatively a selection may be done and an attribute setting may be triggered similar to selecting HTML elements with CSS
+```
+### The crurse takes effect
+Alle the male villagers turned into zombies.
+% .villager.male % { species=zombie }
 ```
 
 #### Section parameters
