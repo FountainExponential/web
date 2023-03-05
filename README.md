@@ -264,16 +264,19 @@ Fountain Exponential Element | Example
 "Searched Label" | `#~` after a diver or detour defines a **Searched Label** going to a section while ignoring the section level
 Continue | \|\| at the start of a line defines the continue from this section to next section. Equal to a divert seperate and the label of the next section.
 Image | Include an image for storyboarding 
-Link | A link can be used for outside reference or anchors in the text
-List | Visible list of elements interpreted as a menu when contained in a Container.
-Code span | Code integrated as part of the text
-Code block | A block of multiple lines of code
-Yaml block | Data in YAML format specific to the section 
-Attribute span | Attributes put on elements similar to CSS
-Conditionals | the if else statement controlling flow of the text
-Arrangement | a generator that yields a text from a list every time when called 
+Link | A link can be used for outside reference or anchors within the text
+List | Visible list of elements, interpreted as a menu when contained in a Container.
 Container | A block denoting an area with special rules.
 Menu | A list wrapped in a Container
+Conditionals | the if else statement controlling flow of the text, integrated into the text.
+Arrangement | a generator that yields a text from a list every time when called 
+Code span | Code integrated as part of the text, triggered at display time of the text.
+Code block | A block of multiple lines of code, triggered when the structure element like a scene is used.
+JSON Attribute span | Descriptive attributes in JSON format put on integrated parts of the text similar to CSS
+JSON Attribute block | Descriptive attributes in JSON format put on elements similar to CSS
+TOML block | Data, about game engine behavior like conditionals and triggers, in TOML format specific to the structure coming before it, but setting up the interaction with the game.
+YAML block | Data, about in game behavior like visuals, in YAML format specific to the Entity of the game coming before it, triggered when the structure element like a scene is used. 
+
 
 ### Fountain
 Fountain most important feature is the character labeled dialog, so well known in the writing forms of screenplay, stageplay, teleplay and radioplay. Some interactive fiction formats mimic the labeling, but do so by adding the character in front of the line followed by a colon and then the spoken text. Fountains way of having the characters name in the line before the dialog is easier to read, but a bit more verbose. Optionally the character can be prefixed with an @ sign for clarity. Dialog ends with an empty line, but dialog may continue if 2 spaces are put in the empty line. This is exactly like the Fountain specification, but it is important to repeat here.
@@ -431,7 +434,7 @@ I got  $amountRetrieved() in one go.
 ~~~
 
 ##### Integrated Common Code Language (ICCL)
-The Integrated Common Code Language (ICCL) is the programming integrated with Fountain Exponential. It is intended as a bare bones inplementation to control the story. Fountain Exponential code blocks can be used with multiple language like C/C++, C#, Java and Javascript, because it's primary consern is the text in the game. However an integrated language is needed when writing in an engine independent way.
+The Integrated Common Code Language (ICCL) is the programming integrated with Fountain Exponential. It is intended as a bare bones implementation to control the story. Fountain Exponential code blocks can be used with multiple language like C/C++, C#, Java and Javascript, because it's primary consern is the text in the game. However an integrated language is needed when writing in an engine independent way.
 
 ###### Overriding ICCL
 The ICCL can be overriden by blocks in a specific language by setting the override attribute to the id of the block with the specific language code.
@@ -461,7 +464,7 @@ One snap of my fingers and %=Snap% it's gone.
 
 Alternatively a selection may be done and an attribute setting may be triggered similar to selecting HTML elements with CSS
 ```
-### The crurse takes effect
+### The curse takes effect
 Alle the male villagers turned into zombies.
 % .villager.male % { species=zombie }
 ```
@@ -722,37 +725,52 @@ Using the most suitable extensions for Fountain Exponential will make it compati
 
 Adding Markdown extensions will make it more complex, but achieve the same things as it's competitors in a far simplify way. This will make creation of the story of a game easier, as well as allow for more clarity and ease of rewriting.
 
-#### Yaml blocks for data interaction
-Yaml blocks in Markdown are fenced by triple minuses ---
+#### Data and Code blocks
+Fountain Exponential reuses a number of Front Matter blocks, like TOML, YAML and JSON to instruct or send data to the game engine. The same could be achieved with Code blocks, by setting properties and calling functions. Code blocks can differ in implementation language and data block can be parsed by multiple implementations and retain their meaning. All Data and Code blocks can be cut from the text and fed into their specific parsers. As these are common data format with parsers available in many languages this should not be an issue for implementors.
 
-Yaml blocks are generally used in Markdown as a place to store values that get replaced in the text, making the Markdown into a template. It can only be added to the front of the file, hence the name "Yaml Front Matter" used by markdown interpreters.
+Having data blocks designated for specific purposes makes the intention of the text also clearer to the reader. While learning multiple format is harder then using just one format, it does match Fountain Exponential intention to optimize for readability.
 
-Tagging Yaml data to Scenes and Moments is easy, unobtrusive an flexible. The interpreting game engine can use or ignore whatever it finds. The Yaml blocks together with the code blocks makes it possible for the text to interact with the rest of the game systems. 
+#### TOML blocks for setting up interaction
+Yaml blocks in Markdown are fenced by triple plusses +++
+
+TOML blocks are generally used for setting up interaction with the engine like conditional triggers. Also adapting the story to the game engine by replacing parts of the story, like a scene that makes you choose where to go next, with walking around in a world, is done with TOML. As the game should be testable as a text adventure with choices, the TOML data sets up the dirty changes that are needed to have a different type of engine handle the story.
+
+The TOML syntax is similar to that of INI files used in configuration of applications. It is therefor a natural fit for these technical configurations.
 
 ##### Special data keys
-The user can put whatever is needed in the Yaml block, but some keys are special in that they are useful to have.
+The user can put whatever is needed in the TOML block, but some keys are special in that they are useful to have.
 
 ###### The isStart key
 The Boolean isStart key of a scene can be used to identify with what scene to start. Default the first scene in the file is the start of the story, similar to a screenplay starts at the first scene. For testing purposes a later scene can be set to be the starting scene by adding the isStart: true key to it. In the case of multiple scenes tagged with isStart: true the last one becomes the starting scene. The last one wins behavior is preferable when testing further and further down the story. It is also possible to tag a scene isStart: false, which is redundant under normal circumstances, but can be beneficial when switching between scenes when testing.
 
-###### Triggers and events
-Adding the ability to add Yaml to the front of a Scene will make the scene be scannable for trigger or event definitions that should be handled by the interpreter. In this way, an action in the game can trigger the scene and display the text of the scene to the user.
+###### Conditional triggers
+Adding the ability to add TOML to the front of a Scene will make the scene be scannable for conditional trigger definitions that should be handled by the interpreter. In this way, an action in the game can trigger the scene and display the text of the scene to the user.
 
-Triggers is a name often used in 2d and 3d gaming, events is a name often used in business oriented software, in the interactive fiction community these are  often called quality based narrative or storylets for short . All describe an action performed when some situation arises, but in 2d and 3d games this is often a location 1ed, in business oriented software this is often a button press and in quality based narrative this is often the value of a quality reaching a threshold value. A storylet is a piece of story with the description of the qualities under witch it triggers. The storylet was created by Failbetter for their game Fallen Londen and has been adopted by the interactive fiction community as a shorthand for quality based narrative.
+Triggers is a name often used in 2d and 3d gaming, events is a name often used in business oriented software, in the interactive fiction community these are often called quality based narrative or storylets for short. All describe an action performed when some situation arises, but in 2d and 3d games this is often a location the player enters, in business oriented software this is often a button press and in quality based narrative this is often the value of a quality reaching a threshold value. A storylet is a piece of story with the description of the qualities under witch it triggers. The storylet was created by Failbetter for their game Fallen Londen and has been adopted by the interactive fiction community as a shorthand for quality based narrative.
 
 Activating a scene by a trigger is actually a superset of activating a scene by following a links or making a choice in a menu. A trigger can be equivalent to those options by having the description of the trigger holding the data for a clicked link or a choice made and immediately activate when that situation arrives. The trigger could be expanded with other prerequisites, making it probably activate later in the story when that extra prerequisite is met or have multiple scenes where one is picket for a specific case. 
 Following a link or making a choice in a menu seems much more easy to understand for humans then having some scene somewhere with a trigger on it, making it pop up in the story. This could however be used to move less relevant links and choices from the main story file to include files, so they don't detract from the main story. This would also make those include files more self contained and possibly be reusable in another story.
 
-###### Broadcasts and messages when entering
-Other declarative data interaction may also be possible, like sending a data notification, when entering a scene, to a specific component or to all that are listening on a topic. In many cases tagging the Yaml of Message containing the data of a transaction would be better suited to a Moment, like that of buying an item. 
 
-###### Data locality
-The Yaml data blocks may be extended as a writer sees fit, but the data is always related and thus local to that Scene or Moment. A similar Scene in a different act does not have that data unless a copy is specified in code.
+#### YAML blocks for triggered data interaction
+Yaml blocks in Markdown are fenced by triple minuses ---
+
+Yaml blocks are generally used for sending a package of data to the game engine when the Fountian Exponential structure like a scene is activated. This is similar to sending events in an event driven application. YAML emits triggers while TOML configures reception of triggers.
+
+Yaml blocks in Markdown are used a place to store values that get replaced in the text, making the Markdown into a template. It can only be added to the front of the file, hence the name "Yaml Front Matter" used by markdown interpreters.
+
+Tagging Yaml data to Scenes and Moments is easy, unobtrusive an flexible. The interpreting game engine can use or ignore whatever it finds. The Yaml blocks together with the code blocks makes it possible for the text to interact with the rest of the game systems. 
+
+###### Broadcasts and messages when entering
+YAML is used for declarative data interaction, like sending a data notification, when entering a scene, to a specific component or to all that are listening on a topic. In many cases tagging the Yaml of Message containing the data of a transaction would be better suited to a Moment, like that of buying an item. 
+
+###### Data reception
+The data in Yaml data blocks standard overrides the global data of the game. 
 
 For example:
 ```
 ### Shopkeeper scene
----
++++
 subscriptions:
   triggerSituations:
     - location:  GothamCity
@@ -761,6 +779,8 @@ subscriptions:
     - location:  WindyCity
       shoparea:  Docks
       action:    Interact
++++
+---
 broadcasts:
   - topic: history
     anotherSaveArrival: true
@@ -804,10 +824,10 @@ I'll take your tenner and give you directions.
 Ask for Pablo. Say Tony send ya.
 ```
 
-#### Attribute blocks
-Attributes in Fountain Exponential are similar to the attributes in HTML. They are nodes in the Game Object Model (GOM) that is being hosted by the Engine Object Model (EOM). The EOM is not specified and can be implemented in multiple ways. The GOM is standardized and holds the elements of the text as wel as Entities in the game world. 
+#### JSON Attribute blocks
+Attributes in Fountain Exponential are similar to the attributes in HTML. They are JSON nodes in the Game Object Model (GOM) that is being hosted by the Engine Object Model (EOM). The EOM is not specified and can be implemented in multiple ways. The GOM is standardized and holds the elements of the text as wel as Entities in the game world. 
 
-Attributes can alter the text, but also an Entity in the game. Therfor the attributes should not collide in meaning. For instance setting the color of the text should be done by {}sometext{style="text-color:blue"} while styling for instance the GUN in the game would be done by GUN{style="weapon-color:blue"}
+Attributes can alter the text, but also an Entity in the game. Therefore the attributes should not collide in meaning. For instance setting the color of the text should be done by {}sometext{style="text-color:blue"} while styling for instance the GUN in the game would be done by GUN{style="weapon-color:blue"}
 
 Attributes in Markdown are started by an open accolade { and end with a closing accolade }. The opening accolade is optionaly followed by a colon :, but this is a residue of Inline Attribute Lists (ISL), that does not match well with the hash # of id and dot . of class attributes. When using Markdig or Kramdown they translate to attributes on an element in HTML.
 
@@ -967,6 +987,10 @@ https://commonmark.org/
 
 ### Markdown extensions
 There are many Markdown Extensions to be found. For Fountain Exponential the ones that inspired the syntax for Yaml Front Matter, Attributes and Containers where essential for creating a coherent whole. The ones that come to mind are GitHub flavored Markdown, Markdig, Kramdoc, Pandoc, Jekyll, Hugo, Markdown-r, VuePress.
+
+### Hugo Front Matter Formats
+Hugo supports four formats for front matter, TOML, YAML, JSON and ORG. This illustrates the multiple ways Markdown can be interspeced by data.
+https://gohugo.io/content-management/front-matter/
 
 ### Interactive Fiction Mark Up Language (IFML)
 https://sourceforge.net/projects/ifml/
